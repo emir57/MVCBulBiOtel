@@ -1,0 +1,232 @@
+/*************************Index***********************************/
+.carouselContainerI {
+    position: relative;
+    margin-top: 6rem;
+    width: 100%;
+    border: 1px solid grey;
+    border-radius: 6px;
+    -webkit-box-shadow: 10px 9px 12px -9px rgba(43,43,43,1);
+    -moz-box-shadow: 10px 9px 12px -9px rgba(43,43,43,1);
+    box-shadow: 10px 9px 12px -9px rgba(43,43,43,1);
+}
+
+.mainContainer {
+    position: relative;
+    background-color: #E5E6E7;
+    margin-top: 3rem;
+    height: auto;
+    padding-bottom: 40px;
+    width: 100%;
+    border-radius: 5px;
+    -webkit-box-shadow: 7px 10px 32px -15px rgba(43,43,43,1);
+    -moz-box-shadow: 7px 10px 32px -15px rgba(43,43,43,1);
+    box-shadow: 7px 10px 32px -15px rgba(43,43,43,1);
+}
+
+.filterCard {
+    width: 100%;
+    height: 40rem;
+    position: relative;
+    background-color: #CCD4DB;
+    border-bottom: 1px solid #D6D6D6;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.otelsCard {
+    position: relative;
+    height: 75%;
+}
+
+.card {
+    margin-top: 2rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 21px -13px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 21px -13px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 21px -13px rgba(0,0,0,0.75);
+}
+    .card:hover {
+        -webkit-box-shadow: 10px 10px 49px -18px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 49px -18px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 49px -18px rgba(0,0,0,0.75);
+        transition: all 0.5s;
+    }
+.card:hover .image {
+        -webkit-box-shadow: 0px 0px 60px -8px rgba(0,89,149,1);
+        -moz-box-shadow: 0px 0px 60px -8px rgba(0,89,149,1);
+        box-shadow: 0px 0px 60px -8px rgba(0,89,149,1);
+        transition: all 0.5s;
+}
+.card:hover .price{
+    font-size:3.7rem;
+    transition: all 0.6s;
+}
+.card:hover .rating {
+    font-size: 3.3rem;
+    transition: all 0.6s;
+}
+
+.card-image {
+    float: left;
+    border-radius: 1px;
+    width: 20%;
+    height: 100%;
+}
+
+
+.image {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-top: auto;
+    height: auto;
+    width: 100%;
+}
+
+.card-properties {
+    position: absolute;
+    right: 0;
+    width: 80%;
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: #000000;
+}
+.card-title{
+
+}
+
+.rating {
+    display: inline-block;
+    position: absolute;
+    font-family: 'Lato', sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+    color: #F5B041;
+    right: 1rem;
+    bottom: 0;
+}
+
+.descriptions {
+    font-size: 2rem;
+    position: absolute;
+    bottom: 30%;
+    left: 40px;
+    color: #179688;
+}
+
+.otelname {
+    position: absolute;
+    margin-bottom:2rem;
+    left: 1rem;
+}
+
+.otelStars {
+    position: absolute;
+    display: inline-block;
+    color: #F5B041;
+    right: 6rem;
+    bottom: 0;
+}
+
+.price {
+    position: absolute;
+    display: inline-block;
+    top: 0px;
+    right: 4rem;
+    color: #05B400;
+}
+
+.location {
+    position: absolute;
+    display: inline-block;
+    margin-top:2rem;
+    bottom: 0;
+    left: 1rem;
+    color: #E6842D;
+}
+.middle{
+    width:40rem;
+    position:absolute;
+    display:block;
+    bottom:1rem;
+    margin:0 33%;
+}
+.middle-right {
+    width: 20rem;
+    position: absolute;
+    display: block;
+    bottom: 1rem;
+    right:1rem;
+}
+.border {
+    border-radius: 10px;
+    margin-top: 3rem;
+    display: inline-block;
+    border: 1px solid grey;
+    margin-left: 5rem;
+    width: 30rem;
+    height: auto;
+    padding: 1rem;
+}
+.verticalHover{
+    display:inline-block;
+    margin-right:0;
+    margin-left:1rem;
+    width:0.2rem;
+    height:5rem;
+    background-color:grey;
+    border-radius:5px;
+}
+.pricePosition{
+    
+}
+.alert{
+    text-align:center;
+    display:none;
+}
+.searchTitle{
+    padding:0.5rem;
+    margin-left:5%;
+}
+.upperBTN{
+    display:none;
+    position:fixed;
+    bottom:1.5rem;
+    right:1.5rem;
+    z-index:100;
+}
+.width-90 {
+    margin: 0 auto;
+    width: 90%;
+}
+.btn-submit {
+    width: 100%;
+}
+.priceAlt{
+    display:inline-block;
+    margin-left:2rem;
+}
+.cizgi{
+    margin:0.5rem;
+}
+
+.countryDiv {
+
+}
+
+.imgI {
+    height: 60rem;
+    width: auto;
+    object-fit: cover;
+}
+.searchString{
+    display:none;
+}
+
+.count {
+    color: #21618C;
+}
+

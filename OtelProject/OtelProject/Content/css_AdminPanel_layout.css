@@ -1,0 +1,93 @@
+
+/*************************Admin Panel***********************************/
+
+#leftBar {
+    position: fixed;
+    width: 20%;
+    height: 100%;
+    background-color: #2C3E50;
+    color: #F2F3F4;
+}
+#mainBar {
+    right: 0;
+    position: absolute;
+    background-color: #F8F9F9;
+    width: 80%;
+    height: 100%;
+}
+.panelTitle{
+    padding:10px;
+}
+.list {
+    list-style: none;
+}
+.list-li {
+    margin-bottom: 10px;
+}
+.list-item {
+    text-decoration: none;
+    font-size:16px;
+    
+    
+    transition:all 0.4s;
+}
+.defaultColor {
+    color: #F2F3F4;
+}
+    .list-item:hover {
+        color: #BDC3C7;
+    }
+hr {
+    margin: 10px;
+    width: 80%;
+}
+#topHover{
+    width:100%;
+}
+.listBottom{
+    position:absolute;
+    bottom:0;
+}
+.logOut {
+    margin-top:30%;
+    color: #C0392B;
+}
+/*Otel Add*/
+.text {
+    width: 100px;
+}
+.jumbotron {
+}
+
+/*Otel List*/
+
+.modalTextBody{
+    font-weight:600;
+
+}
+.modalTextRed {
+    font-weight: 700;
+    color: #C0392B;
+}
+/*Otel Delete*/
+.modalTextBodyDelete{
+    font-weight:600;
+}
+.modalTextRedDelete {
+    text-align:center;
+    color: #C0392B;
+    font-weight: 700;
+}
+
+
+/*Log Records*/
+
+.red {
+    color: #C0392B;
+}
+.green {
+    color: #1D8348;
+}
+.blue {
+    color: #3498DB;
+}

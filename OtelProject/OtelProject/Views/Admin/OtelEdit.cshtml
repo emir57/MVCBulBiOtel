@@ -1,0 +1,69 @@
+﻿@model List<OtelProject.Models.Tables.Country>
+@{
+    ViewBag.Title = "Otel Düzenle "+ @TempData["username"];
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+<span class="display-4">Otel Düzenle</span>
+<hr />
+@using (Html.BeginForm("OtelEdit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="id">Otel Id</span>
+        @Html.TextBox("OtelsId", ViewData["OtelsId"], new { @class = "form-control text", disabled = "true" })
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="name">Otel Adı</span>
+        @Html.TextBox("OtelName", ViewData["OtelName"], new { @class = "form-control text" })
+
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="location">Otel Lokasyonu</span>
+        @Html.TextBox("OtelLocation", ViewData["OtelLocation"], new { @class = "form-control text" })
+
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="price">Otel Fiyatı</span>
+        @Html.TextBox("OtelPrice", ViewData["OtelPrice"], new { @class = "form-control text" })
+
+
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="description">Otel Açıklaması</span>
+        @Html.TextBox("OtelDescription", ViewData["OtelDescription"], new { @class = "form-control text" })
+
+
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="star">Otel Yıldızı</span>
+        @Html.TextBox("OtelStars", ViewData["OtelStars"], new { @class = "form-control text" })
+
+
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="rating">Otel Puanlaması</span>
+        @Html.TextBox("OtelRating", ViewData["OtelRating"], new { @class = "form-control text" })
+
+
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="countries">Otel Şehri</span>
+        <select id="countries" name="OtelCountry" class="form-select form-select-lg" aria-label="Default select example">
+            <option value=@ViewData["OtelCountry"] selected>@ViewData["CountryName"]</option>
+            @foreach (var itemC in Model)
+                {
+                    <option value="@itemC.CountryId">@itemC.CountryName</option>
+                }
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="picture">Otel Resmi</span>
+        <input type="file" accept="image/*" placeholder="Resim Boş bırakılırsa default resim seçilecektir." name="picture" id="picture" class="form-control text" aria-label="Username" aria-describedby="picture">
+        @*@Html.TextBoxFor(a => a.OtelName, new { @class = "form-control text", type = "file", accept = "image/*", name = "picture" })*@
+    </div>
+    <div class="input-group mb-3">
+        <input type="submit" value="Güncelle" name="btnSubmit" id="btnSubmit" class="form-control btn btn-primary" aria-label="Username" aria-describedby="btn">
+    </div>
+}
+
+

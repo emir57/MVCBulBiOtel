@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BulBiOtel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css_AdminPanel_layout.css")" />
+
+    <title>Admin Panel</title>
+</head>
+<body>
+    <div id="leftBar">
+        <h5 class="panelTitle">Admin Panel - İşlemleri</h5>
+        <hr id="topHover" />
+        <h6 class="panelTitle">Ekleme İşlemleri</h6>
+        <hr />
+        <ul class="list">
+            <li class="list-li">
+                @Html.ActionLink("Otel Ekle", "OtelAdd", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+            <li class="list-li">
+                @Html.ActionLink("Şehir Ekle", "CountryAdd", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+        </ul>
+        <h6 class="panelTitle">Düzenleme İşlemleri</h6>
+        <hr />
+        <ul class="list">
+            <li class="list-li">
+                @Html.ActionLink("Oteller", "OtelList", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+            <li class="list-li">
+                @Html.ActionLink("Şehirler", "CountryList", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+        </ul>
+        <ul class="list listBottom">
+            <li class="list-li">
+                @Html.ActionLink("Otel Sahibi Onayları", "OtelUsersList", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+            <li class="list-li">
+                @Html.ActionLink("Log Kayıtları", "LogRecords", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+            <li class="list-li">
+                @Html.ActionLink("Çıkış Yap", "AdminLogOut", "Admin", new { @class = "list-item logOut", onclick = "return confirm('Çıkış yapmak istediğinizden eminmisiniz?')" })
+            </li>
+        </ul>
+    </div>
+    <div id="mainBar">
+        @RenderBody()
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>

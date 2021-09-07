@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Otel Sahibi Girişi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .red {
+        color: #E74C3C;
+    }
+</style>
+
+<div class="jumbotron">
+    <h2>Otel Sahibi Girişi</h2>
+    <hr />
+    @using (Html.BeginForm("OtelLogin", "OtelUsers", FormMethod.Post, new { id = "formcontrol" }))
+    {
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Kullanıcı Adı</label>
+            @*<input type="text" class="form-control" id="username" placeholder="lütfen kullanıcı adınızı giriniz.">*@
+            @Html.TextBox("username", "", new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Şifre</label>
+            @*<input type="password" class="form-control" id="password" placeholder="lütfen şifrenizi giriniz.">*@
+            @Html.Password("password", "", new { @class = "form-control" })
+
+        </div>
+        @Html.ActionLink("Oteliniz mi var ? Kayıt Olun", "OtelRegister", new { }, new { @class = "" })
+        <div class="mb-3">
+            <input type="submit" class="btn btn-primary" id="button" value="Giriş Yap">
+        </div>
+    }
+
+    <div id="message" class="red" role="alert">
+        <p>@ViewBag.Message</p>
+    </div>
+</div>
+
+<script>
+    var form = document.forms["formcontrol"];
+    var usrname = document.querySelector("#username");
+    var passwd = document.querySelector("#password");
+    var button = document.querySelector("#button");
+    var messagebox = document.querySelector("#message");
+    messagebox.style.display = "block";
+
+    form.onsubmit = function () {
+        messagebox.style.display = "block";
+        if (usrname.value == "") {
+            messagebox.innerHTML = "<p></p>";
+            messagebox.innerHTML += "<p>Kullanıcı Adı Boş Olamaz</p>";
+            messagebox.style.display = "block";
+            return false;
+        }
+        else if (passwd.value == "") {
+            messagebox.innerHTML = "<p></p>";
+            messagebox.innerHTML += "<p>Şifre Alanı Boş Olamaz</p>";
+            messagebox.style.display = "block";
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+
+</script>
+
+

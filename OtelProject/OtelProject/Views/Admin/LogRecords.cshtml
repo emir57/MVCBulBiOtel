@@ -1,0 +1,41 @@
+﻿@model List<OtelProject.Models.Tables.LogRecord>
+@{
+    ViewBag.Title = "Log Kayıtları";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+<span class="display-3">Log Kayıtları</span>
+<hr />
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Admin Kullanıcı Adı</th>
+            <th>İşlem Tarihi</th>
+            <th>İşlem Türü</th>
+            <th>İşlem Açıklaması</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>@item.LogAdminUserName</td>
+            <td>@item.ProcessingDateTime</td>
+            @{ if (item.OperationType == "Giriş Yapıldı")
+                {<td class="green">@item.OperationType</td>}
+                else if (item.OperationType =="Çıkış Yapıldı")
+                { <td class="red">@item.OperationType</td>}
+                else { <td>@item.OperationType</td>}
+             }
+            <td>@item.Description</td>
+        </tr>
+
+        }
+    </tbody>
+</table>
+
+
+
+
+

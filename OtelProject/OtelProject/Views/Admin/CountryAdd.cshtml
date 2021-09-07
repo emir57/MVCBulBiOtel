@@ -1,0 +1,40 @@
+﻿@model List<OtelProject.Models.Tables.Country>
+@{
+    ViewBag.Title = "Şehir Ekle";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+
+
+
+<div class="jumbotron">
+    <span class="display-4">Şehir Ekle</span>
+    <hr />
+    @using (Html.BeginForm("CountryAdd", "Admin", FormMethod.Post, new { id = "formcontrol" }))
+    {
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="name">Şehir Adı</span>
+            <input type="text" name="countryName" id="name1" class="form-control text" placeholder="Şehir Adı" aria-describedby="name">
+        </div>
+        <div class="input-group mb-3">
+            <input type="submit" value="Kaydet" name="btnSubmit" id="btnSubmit" class="form-control btn btn-primary" aria-label="Username" aria-describedby="btn">
+        </div>
+    }
+</div>
+<script>
+
+    var form = document.forms["formcontrol"]
+    var name1 = document.querySelector("#name1");
+
+    form.onsubmit = function () {
+        if (name1.value == "") {
+            alert("Şehir adı boş olamaz");
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+
+
+

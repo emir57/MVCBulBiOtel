@@ -1,0 +1,25 @@
+﻿@model OtelProject.Models.Tables.Country
+@{
+    ViewBag.Title = "Şehir Düzenle";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+<span class="display-4">Şehir Düzenle</span>
+<hr />
+@using (Html.BeginForm("CountryEdit", "Admin", FormMethod.Post))
+{
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="id">Şehir Plaka Kodu</span>
+        @Html.TextBoxFor(a => a.CountryId, new { @class = "form-control text", disabled = "true" })
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="name">Şehir Adı</span>
+        @*<input type="text" name="name" id="name" class="form-control text" placeholder="Adı" aria-describedby="name">*@
+        @Html.TextBoxFor(a => a.CountryName, new { @class = "form-control text" })
+    </div>
+    <div class="input-group mb-3">
+        <input type="submit" value="Güncelle" name="btnSubmit" id="btnSubmit" class="form-control btn btn-primary" aria-label="Username" aria-describedby="btn">
+    </div>
+
+}
+
