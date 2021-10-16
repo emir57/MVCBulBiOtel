@@ -1,0 +1,63 @@
+﻿@using OtelProject.Models.Tables
+@model List<Otel>
+
+@if(Model.Count()==0)
+{
+    <h3 class="display-3">Kriterinize Göre Otel Bulunamadı.</h3>
+}
+
+@foreach (var otel in Model)
+{
+    <div class="card mb-3" style="max-width: 640px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="@otel.OtelPicture" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@otel.OtelName | <span class="badge bg-primary">@otel.OtelRating</span></h5>
+                    <hr />
+                    <p class="card-text">@otel.OtelDescription</p>
+                    <p class="card-text"><small class="text-muted">@otel.OtelCountry | @otel.OtelLocation |</small></p>
+                    
+                        @{
+                            if (otel.OtelStars == 5)
+                            {
+                                <p class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+
+                            }
+                            else if (otel.OtelStars == 4)
+                            {
+                                <p class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></p>
+
+                            }
+                            else if (otel.OtelStars == 3)
+                            {
+                                <p class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
+
+                            }
+                            else if (otel.OtelStars == 2)
+                            {
+                                <p class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
+
+                            }
+                            else if (otel.OtelStars == 1)
+                            {
+                                <p class="otelStars"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
+
+                            }
+                            else
+                            {
+                                <p class="otelStars"><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
+
+                            }
+
+                        }
+                  
+                    <p class="card-text"><small class="badge bg-success"><i class="fas fa-lira-sign"></i> @((double)otel.OtelPrice)</small></p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+}

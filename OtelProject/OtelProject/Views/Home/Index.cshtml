@@ -46,113 +46,152 @@
 <span id="upper"></span>
 
 <div class="mainContainer">
-    <div class="filterCard">
-        <div class="searchTitle">
-            <h3 class="display-3">Hemen size uygun oteli aramaya başlayın.</h3> <h4>Toplamda <span class="count">@ViewBag.count</span> Otel</h4>
-        </div>
-        <hr class="width-90" />
-        @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @id = "form" }))
-        {
-            <div class="alert alert-danger" role="alert">
-                A simple danger alert—check it out!
-            </div>
-            <div class="countryDiv border">
-                <label class="form-label" for="countries">Şehir Seçiniz</label>
-                <hr class="cizgi" />
-
-                <select id="countries" name="countries" class="form-select form-select-lg" aria-label="Default select example">
-                    <option value="0" selected>...</option>
-                    @foreach (var itemC in Model.c)
-                    {
-                        <option value="@itemC.CountryId">@itemC.CountryName</option>
-                    }
-                </select>
-            </div>
-            <div class="searchString border">
-                <label class="form-label" for="searchString">Otel Adı Arayınız</label>
-                <hr class="cizgi" />
-                @Html.TextBox("searchString", "", new { @class = "form-control", @id = "searchString" })
-            </div>
-            <div class="priceRange border">
-                <label class="" for="">Fiyat Aralığı Giriniz</label><br />
-                <hr class="cizgi" />
-                <div class="priceAlt">
-                    <label class="" for="pricemin">Minimum Fiyat</label>
-                    @Html.TextBox("pricemin", "", new { @class = "form-control", @Style = "width:80px;", @id = "pricemin" })
+    <div class="row">
+        <div class="col-md-4" style="max-height: 530px;">
+            <div id="searchDiv">
+                <div class="searchTitle">
+                    <h5 class="display-5">Arama İşlemleri</h5> <h4>Toplamda <span class="count">@ViewBag.count</span> Otel</h4>
                 </div>
-                <div class="verticalHover pricePosition"></div>
-                <div class="priceAlt">
-                    <label class="" for="pricemax">Maximum Fiyat</label>
-                    @Html.TextBox("pricemax", "", new { @class = "form-control", @Style = "width:80px;", @id = "pricemax" })
+                <hr class="width-90" />
+                <div class="alert alert-danger" role="alert">
+                    A simple danger alert—check it out!
                 </div>
-            </div>
-            <div class="middle">
-                <button id="" type="submit" class="btn btn-primary btn-submit">Ara</button>
-            </div>
-        }
+                <div class="countryDiv border">
+                    <label class="form-label" for="countries">Şehir Seçiniz</label>
+                    <hr class="cizgi" />
 
-
-
-        @Html.ActionLink("Tüm Otelleri Göster","Index",new { },new { @class= "middle-right btn btn-warning" })
-    </div>
-    <div class="otelsCard">
-        @foreach (var item in Model.o)
-        {
-            <div class="card">
-                <div class="card-image">
-                    <img src="@item.OtelPicture" class="image" alt="@item.OtelName">
-                </div>
-                <div class="card-properties ">
-                    <div class="card-body">
-                        <span class="card-title display-4">@item.OtelName</span>
-                        <span class="location">@item.OtelLocation</span>
-                        <span class="rating">@item.OtelRating</span>
-                        <span class="descriptions">@item.OtelDescription</span>
-                        <span class="price">@item.OtelPrice <i class="fas fa-lira-sign"></i></span>
-                        @{
-                            if (item.OtelStars == 5)
-                            {
-                                <span class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-
-                            }
-                            else if (item.OtelStars == 4)
-                            {
-                                <span class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
-
-                            }
-                            else if (item.OtelStars == 3)
-                            {
-                                <span class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-
-                            }
-                            else if (item.OtelStars == 2)
-                            {
-                                <span class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-
-                            }
-                            else if (item.OtelStars == 1)
-                            {
-                                <span class="otelStars"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-
-                            }
-                            else
-                            {
-                                <span class="otelStars"><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-
-                            }
-
+                    <select id="countries" name="countries" class="form-select form-select-lg" aria-label="Default select example">
+                        <option value="0" selected>...</option>
+                        @foreach (var itemC in Model.c)
+                        {
+                            <option value="@itemC.CountryId">@itemC.CountryName</option>
                         }
+                    </select>
+                </div>
+                <div class="searchString border">
+                    <label class="form-label" for="searchString">Arama</label>
+                    <hr class="cizgi" />
+                    @Html.TextBox("searchString", "", new { @class = "form-control", @id = "searchString" })
+                </div>
+                <div class="priceRange border">
+                    <label class="" for="">Fiyat Aralığı Giriniz</label><br />
+                    <hr class="cizgi" />
+                    <div class="priceAlt">
+                        <label class="" for="pricemin">Minimum Fiyat</label>
+                        @Html.TextBox("pricemin", "", new { @class = "form-control", @Style = "width:80px;", @id = "pricemin" })
+                    </div>
+                    <div class="verticalHover pricePosition"></div>
+                    <div class="priceAlt">
+                        <label class="" for="pricemax">Maximum Fiyat</label>
+                        @Html.TextBox("pricemax", "", new { @class = "form-control", @Style = "width:80px;", @id = "pricemax" })
+                    </div>
+                    <div align="center" class="m-2">
+                        <button id="GetOtelsByPriceBtn" class="btn btn-primary">Uygula</button>
                     </div>
                 </div>
-            </div>
-         }
+                <div class="middle">
+                    @*<button id="" type="submit" class="btn btn-primary ">Ara</button>*@
+                </div>
 
+                <div align="center" style="" class="">
+                    <button id="getAllOtelsBtn" class="btn btn-primary">Tüm Otelleri Göster</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div id="otels" style="overflow: auto; max-height: 530px;">
+
+            </div>
+        </div>
     </div>
+    
 </div>
 
     <a class="upperBTN" href="#upper"><i class="fas fa-chevron-circle-up fa-4x"></i></a>
-
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
+    
+    $(document).ready(function () {
+        var listBox = $("#countries");
+        GetAllOtels();
+
+        $("#getAllOtelsBtn").click(function () {
+            GetAllOtels();
+        })
+        
+        $("#GetOtelsByPriceBtn").click(function () {
+            GetOtelsByPrice($("#pricemin").val(), $("#pricemax").val());
+        })
+        $("#searchString").keyup(function () {
+            if ($("#searchString").val() == "") {
+                GetAllOtels();
+            }
+            else {
+                if ($("#searchString").val().length >= 1) {
+                    setTimeout(function () {
+                        GetOtelsByName($("#searchString").val());
+                    }, 400)
+                    //GetOtelsByName($("#searchString").val());
+                }
+            }
+        })
+        listBox.change(function ()
+        {
+            if (listBox.val() == 0) {
+                GetAllOtels();
+
+            }
+            else {
+                GetOtelsByCountry(listBox.val());
+            }
+        })
+
+        function GetAllOtels() {
+            $.ajax({
+                url: "/Home/GetOtels",
+                type: "GET",
+                contentType: "application/html;charset=utf-8",
+                data: "html",
+                success: function (data) {
+                    $("#otels").empty().append(data);
+                }
+            })
+        }
+        function GetOtelsByCountry(id) {
+            $.ajax({
+                url: "/Home/GetOtelsByCountry",
+                type: "GET",
+                contentType: "json",
+                data: {countryid:id},
+                success: function (data) {
+                    $("#otels").empty().append(data);
+                }
+            })
+        }
+        function GetOtelsByName(searchString) {
+            $.ajax({
+                url: "/Home/GetOtelsByName",
+                type: "GET",
+                contentType: "json",
+                data: { searchKey: searchString },
+                success: function (data) {
+                    $("#otels").empty().append(data);
+                }
+            })
+        }
+        function GetOtelsByPrice(min,max) {
+            $.ajax({
+                url: "/Home/GetOtelsByPrice",
+                type: "GET",
+                contentType: "json",
+                data: { minprice: min,maxprice:max },
+                success: function (data) {
+                    $("#otels").empty().append(data);
+                }
+            })
+        }
+        
+    })
 
     //elements
     var form = document.forms["form"];
@@ -166,22 +205,22 @@
     //Forms settings
     alert.style.display = "none";
     alert.innerHTML = "";
-    form.onsubmit = function () {
-        if (searchString.value == "" && countries.value == "0" && pricemin.value == "" && pricemax.value=="") {
+    //form.onsubmit = function () {
+    //    if (searchString.value == "" && countries.value == "0" && pricemin.value == "" && pricemax.value=="") {
             
-            alert.innerHTML = "Arama için en az bir bölümü doldurmalısınız.";
-            alert.style.display = "block";
-            return false;
-        }
-        else if (pricemin.value > pricemax.value) {
-            alert.innerHTML = "Minimum değer Maximum Değerden büyük olamaz.";
-            alert.style.display = "block";
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+    //        alert.innerHTML = "Arama için en az bir bölümü doldurmalısınız.";
+    //        alert.style.display = "block";
+    //        return false;
+    //    }
+    //    else if (pricemin.value > pricemax.value) {
+    //        alert.innerHTML = "Minimum değer Maximum Değerden büyük olamaz.";
+    //        alert.style.display = "block";
+    //        return false;
+    //    }
+    //    else {
+    //        return true;
+    //    }
+    //}
 
     //Scroll settings
     btnUpper.style.display = "none";
