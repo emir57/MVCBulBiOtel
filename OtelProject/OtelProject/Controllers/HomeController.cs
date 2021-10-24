@@ -22,46 +22,6 @@ namespace OtelProject.Controllers
         OtelCountry otelCountry = new OtelCountry();
         public async Task<ActionResult> Index(string searchString, int pricemin=1, int pricemax=0, byte countries = 0)
         {
-            //decimal pmin = Convert.ToDecimal(pricemin);
-            //decimal pmax = Convert.ToDecimal(pricemax);
-            ////Country and price range
-            //if(!(countries == 0) && (pmax > pmin))
-            //{
-            //    otelCountry.o = await context.Otels.Where(a => a.OtelPrice >= pmin && a.OtelPrice <= pmax && a.OtelCountry == countries).ToListAsync();
-            //}
-
-            ////OtelName and Country
-            //else if (!(countries == 0) && !(string.IsNullOrEmpty(searchString)))
-            //{
-            //    otelCountry.o = await context.Otels.Where(a => a.OtelName.ToLower().Contains(searchString.ToLower()) && a.OtelCountry == countries).ToListAsync();
-            //}
-            //                    //Onlys
-            ////Only price range
-            //else if ((pmax > pmin) && (countries==0) && (string.IsNullOrEmpty(searchString)))
-            //{
-            //    otelCountry.o = await context.Otels.Where(a => a.OtelPrice >= pmin && a.OtelPrice <= pmax).ToListAsync();
-            //}
-
-            ////Only Country
-            //else if (!(countries == 0) && (string.IsNullOrEmpty(searchString)) && (pmax < pmin))
-            //{
-            //    otelCountry.o = await context.Otels.Where(a => a.OtelCountry == countries).ToListAsync();
-            //}
-            
-            ////Only OtelName
-            //else if(!(string.IsNullOrEmpty(searchString)) && (countries==0) && (pmax < pmin))
-            //{
-            //    otelCountry.o = await context.Otels.Where(a => a.OtelName.ToLower().Contains(searchString.ToLower())).ToListAsync();
-            //}
-            
-            //else
-            //{
-            //    otelCountry.o = await context.Otels.ToListAsync();
-            //}
-            //if ((pmax > pmin) && !(countries == 0) && !(string.IsNullOrEmpty(searchString)))
-            //{
-            //    otelCountry.o = context.Otels.Where(a => a.OtelPrice >= pmin && a.OtelPrice <= pmax && a.OtelName.ToLower().Contains(searchString.ToLower()) && a.OtelCountry == countries).ToList();
-            //}
             ViewBag.count = context.Otels.Count();
             otelCountry.c = await context.Countries.ToListAsync();
             return View(otelCountry);
@@ -86,16 +46,19 @@ namespace OtelProject.Controllers
         //    }
         //    return RedirectToAction("Index");
         //}
+        [ChildActionOnly]
         public async Task<PartialViewResult> GetOtels()
         {
             var otels = await context.Otels.ToListAsync();
             return PartialView("_GetOtels",otels);
         }
+        [ChildActionOnly]
         public async Task<PartialViewResult> GetOtelsByCountry(int countryid)
         {
             var otels = await context.Otels.Where(a => a.OtelCountry == countryid).ToListAsync();
             return PartialView("_GetOtels", otels);
         }
+        [ChildActionOnly]
         public async Task<PartialViewResult> GetOtelsByName(string searchKey)
         {
             var otels = await context.Otels
@@ -108,6 +71,7 @@ namespace OtelProject.Controllers
                 .ToListAsync();
             return PartialView("_GetOtels", otels);
         }
+        [ChildActionOnly]
         public async Task<PartialViewResult> GetOtelsByPrice(int minprice,int maxprice)
         {
             var otels = await context.Otels.Where(a => a.OtelPrice>=minprice && a.OtelPrice<=maxprice).ToListAsync();
