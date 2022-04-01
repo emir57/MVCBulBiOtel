@@ -405,8 +405,11 @@ namespace OtelProject.Controllers
         public async  Task<ActionResult> OtelDenyDelete()
         {
             //Otel Permission 3 - OK    /   0 - Wait       / 1 - No
-            var user = await context.OtelUsers.Where(a => a.OtelStatus == 1).ToListAsync();
-            context.Entry(user).State = EntityState.Deleted;
+            List<OtelUser> otelUsers = await context.OtelUsers.Where(a => a.OtelStatus == 1).ToListAsync();
+            foreach (OtelUser otelUser in otelUsers)
+            {
+                context.Entry(otelUser).State = EntityState.Deleted;
+            }
             await context.SaveChangesAsync();
 
             //Log
