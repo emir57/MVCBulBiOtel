@@ -185,6 +185,10 @@ namespace OtelProject.Controllers
         [Authorize(Roles = ("Admin"))]
         public async Task<ActionResult> OtelEdit(int? id)
         {
+            if(id == null)
+            {
+                return RedirectToAction(nameof(OtelList));
+            }
             var otel = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == id);
             var country = await context.Countries.SingleOrDefaultAsync(a => a.CountryId == otel.OtelCountry);
             ViewData["OtelsId"] = otel.OtelsId;
