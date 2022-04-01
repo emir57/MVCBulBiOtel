@@ -36,7 +36,9 @@
                 <td>@item.OtelStars</td>
                 <td>@item.OtelRating</td>
                 <td>@item.OtelCountry</td>
-                <td>@item.OtelPicture</td>
+                <td>
+                    <img src="@item.OtelPicture" width="200"/>
+                </td>
                 <td>
                     @Html.ActionLink("Düzenle", "OtelEdit", new { id = item.OtelsId }, new { @class = "btn btn-primary" })
                     @Html.ActionLink("Sil", "OtelDelete", new { id = item.OtelsId }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinizden eminmisiniz?')" })
