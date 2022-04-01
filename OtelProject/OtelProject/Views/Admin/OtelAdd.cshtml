@@ -5,52 +5,56 @@
 }
 
 <div class="jumbotron">
-    <span class="display-4">Otel Ekle</span>
-    <hr />
-    @using (Html.BeginForm("OtelAdd", "Admin", FormMethod.Post, new { enctype = "multipart/form-data",id= "formcontrol" }))
-    {
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="name">Otel Adı</span>
-            <input type="text" name="name" id="name1" class="form-control text" placeholder="Adı" aria-describedby="name">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <span class="display-4">Otel Ekle</span>
+            <hr />
+            @using (Html.BeginForm("OtelAdd", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "formcontrol" }))
+            {
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="name">Otel Adı</span>
+                    <input type="text" name="name" id="name1" class="form-control text" placeholder="Adı" aria-describedby="name">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="location">Otel Lokasyonu</span>
+                    <input type="text" name="location" id="location1" class="form-control text" placeholder="Lokasyon" aria-describedby="location">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="price">Otel Fiyatı</span>
+                    <input type="text" name="price" id="price1" class="form-control text" placeholder="Fiyat" aria-describedby="price">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="description">Otel Açıklaması</span>
+                    <input type="text" name="description" id="description1" class="form-control text" placeholder="Açıklama" aria-describedby="description">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="star">Otel Yıldızı</span>
+                    <input type="text" name="stars" id="stars1" class="form-control text" placeholder="Örn 5" aria-describedby="star">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="rating">Otel Puanlaması</span>
+                    <input type="text" name="rating" id="rating1" class="form-control text" placeholder="Örn 4,3" aria-describedby="rating">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="countries">Otel Şehri</span>
+                    <select id="countries1" name="countries" class="form-select form-select-lg" aria-label="Default select example">
+                        <option value="0" selected>...</option>
+                        @foreach (var itemC in Model)
+                        {
+                            <option value="@itemC.CountryId">@itemC.CountryName</option>
+                        }
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="picture">Otel Resmi(Resim Boş bırakılırsa default resim seçilecektir)</span>
+                    <input type="file" accept="image/*" placeholder="Resim Boş bırakılırsa default resim seçilecektir." name="picture" id="picture" class="form-control text" aria-label="Username" aria-describedby="picture">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="submit" value="Kaydet" name="btnSubmit" id="btnSubmit" class="form-control btn btn-primary" aria-label="Username" aria-describedby="btn">
+                </div>
+            }
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="location">Otel Lokasyonu</span>
-            <input type="text" name="location" id="location1" class="form-control text" placeholder="Lokasyon" aria-describedby="location">
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="price">Otel Fiyatı</span>
-            <input type="text" name="price" id="price1" class="form-control text" placeholder="Fiyat" aria-describedby="price">
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="description">Otel Açıklaması</span>
-            <input type="text" name="description" id="description1" class="form-control text" placeholder="Açıklama" aria-describedby="description">
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="star">Otel Yıldızı</span>
-            <input type="text" name="stars" id="stars1" class="form-control text" placeholder="Örn 5" aria-describedby="star">
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="rating">Otel Puanlaması</span>
-            <input type="text" name="rating" id="rating1" class="form-control text" placeholder="Örn 4,3" aria-describedby="rating">
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="countries">Otel Şehri</span>
-            <select id="countries1" name="countries" class="form-select form-select-lg" aria-label="Default select example">
-                <option value="0" selected>...</option>
-                @foreach (var itemC in Model)
-                {
-                    <option value="@itemC.CountryId">@itemC.CountryName</option>
-                }
-            </select>
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="picture">Otel Resmi(Resim Boş bırakılırsa default resim seçilecektir)</span>
-            <input type="file" accept="image/*" placeholder="Resim Boş bırakılırsa default resim seçilecektir."name="picture" id="picture" class="form-control text" aria-label="Username" aria-describedby="picture">
-        </div>
-        <div class="input-group mb-3">
-            <input type="submit" value="Kaydet" name="btnSubmit" id="btnSubmit" class="form-control btn btn-primary" aria-label="Username" aria-describedby="btn">
-        </div>
-    }
+    </div>
 </div>
 <script>
     var form = document.forms["formcontrol"];
