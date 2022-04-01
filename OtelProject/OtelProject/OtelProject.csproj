@@ -263,7 +263,6 @@
     <Content Include="Views\OtelUsers\OtelUserEdit.cshtml" />
     <Content Include="Views\OtelUsers\OtelRegister.cshtml" />
     <Content Include="Views\Admin\OtelUsersList.cshtml" />
-    <Content Include="Views\Shared\_GetOtels.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

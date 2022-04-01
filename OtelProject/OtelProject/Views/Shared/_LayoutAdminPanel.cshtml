@@ -17,61 +17,49 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.11.3/datatables.min.css" />
-
     <link rel="stylesheet" href="@Url.Content("~/Content/css_AdminPanel_layout.css")" />
 
     <title>Admin Panel</title>
 </head>
 <body>
-    <div class="row">
-        <div class="col-md-2" style="padding-right:0;">
-            <div id="leftBar">
-                <h5 class="panelTitle">Admin Panel - İşlemleri</h5>
-                <hr id="topHover" />
-                <h6 class="panelTitle">Ekleme İşlemleri</h6>
-                <hr />
-                <ul class="list">
-                    <li class="list-li">
-                        @Html.ActionLink("Otel Ekle", "OtelAdd", "Admin", new { @class = "list-item defaultColor" })
-                    </li>
-                    <li class="list-li">
-                        @Html.ActionLink("Şehir Ekle", "CountryAdd", "Admin", new { @class = "list-item defaultColor" })
-                    </li>
-                </ul>
-                <h6 class="panelTitle">Düzenleme İşlemleri</h6>
-                <hr />
-                <ul class="list">
-                    <li class="list-li">
-                        @Html.ActionLink("Oteller", "OtelList", "Admin", new { @class = "list-item defaultColor" })
-                    </li>
-                    <li class="list-li">
-                        @Html.ActionLink("Şehirler", "CountryList", "Admin", new { @class = "list-item defaultColor" })
-                    </li>
-                </ul>
-                <ul class="list listBottom">
-                    <li class="list-li">
-                        @Html.ActionLink("Otel Sahibi Onayları", "OtelUsersList", "Admin", new { @class = "list-item defaultColor" })
-                    </li>
-                    <li class="list-li">
-                        @Html.ActionLink("Log Kayıtları", "LogRecords", "Admin", new { @class = "list-item defaultColor" })
-                    </li>
-                    <li class="list-li">
-                        @Html.ActionLink("Çıkış Yap", "AdminLogOut", "Admin", new { @class = "list-item logOut", onclick = "return confirm('Çıkış yapmak istediğinizden eminmisiniz?')" })
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-10" style="">
-            <div id="mainBar">
-                @RenderBody()
-            </div>
-            
-        </div>
+    <div id="leftBar">
+        <h5 class="panelTitle">Admin Panel - İşlemleri</h5>
+        <hr id="topHover" />
+        <h6 class="panelTitle">Ekleme İşlemleri</h6>
+        <hr />
+        <ul class="list">
+            <li class="list-li">
+                @Html.ActionLink("Otel Ekle", "OtelAdd", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+            <li class="list-li">
+                @Html.ActionLink("Şehir Ekle", "CountryAdd", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+        </ul>
+        <h6 class="panelTitle">Düzenleme İşlemleri</h6>
+        <hr />
+        <ul class="list">
+            <li class="list-li">
+                @Html.ActionLink("Oteller", "OtelList", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+            <li class="list-li">
+                @Html.ActionLink("Şehirler", "CountryList", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+        </ul>
+        <ul class="list listBottom">
+            <li class="list-li">
+                @Html.ActionLink("Otel Sahibi Onayları", "OtelUsersList", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+            <li class="list-li">
+                @Html.ActionLink("Log Kayıtları", "LogRecords", "Admin", new { @class = "list-item defaultColor" })
+            </li>
+            <li class="list-li">
+                @Html.ActionLink("Çıkış Yap", "AdminLogOut", "Admin", new { @class = "list-item logOut", onclick = "return confirm('Çıkış yapmak istediğinizden eminmisiniz?')" })
+            </li>
+        </ul>
+    </div>
+    <div id="mainBar">
+        @RenderBody()
     </div>
 </body>
 </html>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-@RenderSection("scripts", required: false)

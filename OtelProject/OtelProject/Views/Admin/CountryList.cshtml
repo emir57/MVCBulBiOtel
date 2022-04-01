@@ -8,7 +8,7 @@
 
 <span class="display-3">Şehirler</span>
 <hr />
-<table id="table" class="table table-striped table-hover">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>Şehir Plakası</th>
@@ -25,7 +25,7 @@
                 <td>@item.CountryName</td>
                 <td>
                     @Html.ActionLink("Düzenle", "CountryEdit", new { id = item.CountryId }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Sil", "CountryDelete", new { id = item.CountryId }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinizden eminmisiniz?')" })
+                    @Html.ActionLink("Sil", "CountryDelete", new { id = item.CountryId }, new { @class = "btn btn-danger",onclick="return confirm('Silmek istediğinizden eminmisiniz?')" })
 
                 </td>
             </tr>
@@ -33,15 +33,3 @@
         }
     </tbody>
 </table>
-
-@section scripts{
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.11.3/datatables.min.js"></script>
-
-
-    <script>
-        $(document).ready(function () {
-            $('#table').DataTable();
-        });
-    </script>
-}

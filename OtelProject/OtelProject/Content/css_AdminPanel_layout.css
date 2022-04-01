@@ -2,21 +2,18 @@
 /*************************Admin Panel***********************************/
 
 #leftBar {
-    left:0;
-    position:fixed;
-    height:100%;
+    position: fixed;
+    width: 20%;
+    height: 100%;
     background-color: #2C3E50;
     color: #F2F3F4;
 }
 #mainBar {
-    
-    height:100%;
+    right: 0;
+    position: absolute;
     background-color: #F8F9F9;
-	overflow:scroll;
-    
-}
-#table{
-max-width:100%;
+    width: 80%;
+    height: 100%;
 }
 .panelTitle{
     padding:10px;
