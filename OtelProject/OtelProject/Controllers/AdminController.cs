@@ -331,16 +331,8 @@ namespace OtelProject.Controllers
             return View(list);
         }
         //Otel users
-#pragma warning disable CS0246 // The type or namespace name 'AuthorizeAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'Roles' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'Authorize' could not be found (are you missing a using directive or an assembly reference?)
         [Authorize(Roles = ("Admin"))]
-#pragma warning restore CS0246 // The type or namespace name 'Authorize' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'Roles' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'AuthorizeAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         public async Task<ActionResult> OtelUsersList(string query)
-#pragma warning restore CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         {
             var list = await context.OtelUsers.ToListAsync();
             //3 - OK    /   0 - Wait       / 1 - No
@@ -378,22 +370,9 @@ namespace OtelProject.Controllers
 
 
         }
-
-#pragma warning disable CS0246 // The type or namespace name 'HttpPostAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'HttpPost' could not be found (are you missing a using directive or an assembly reference?)
         [HttpPost]
-#pragma warning restore CS0246 // The type or namespace name 'HttpPost' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'HttpPostAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'Roles' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'Authorize' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'AuthorizeAttribute' could not be found (are you missing a using directive or an assembly reference?)
         [Authorize(Roles = ("Admin"))]
-#pragma warning restore CS0246 // The type or namespace name 'AuthorizeAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'Authorize' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'Roles' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         public async Task<ActionResult> OtelAccept(int userid)
-#pragma warning restore CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         {
             //Otel Permission 3 - OK    /   0 - Wait       / 1 - No
             var user = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == userid);
@@ -408,21 +387,9 @@ namespace OtelProject.Controllers
 
             return RedirectToAction("OtelUsersList");
         }
-#pragma warning disable CS0246 // The type or namespace name 'HttpPostAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'HttpPost' could not be found (are you missing a using directive or an assembly reference?)
         [HttpPost]
-#pragma warning restore CS0246 // The type or namespace name 'HttpPost' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'HttpPostAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'Roles' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'Authorize' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'AuthorizeAttribute' could not be found (are you missing a using directive or an assembly reference?)
         [Authorize(Roles = ("Admin"))]
-#pragma warning restore CS0246 // The type or namespace name 'AuthorizeAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'Authorize' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'Roles' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         public async Task<ActionResult> OtelDeny(int userid)
-#pragma warning restore CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         {
             //Otel Permission 3 - OK    /   0 - Wait       / 1 - No
             var user = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == userid);
@@ -437,19 +404,8 @@ namespace OtelProject.Controllers
             return RedirectToAction("OtelUsersList");
         }
 
-#pragma warning disable CS0246 // The type or namespace name 'HttpPost' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'HttpPostAttribute' could not be found (are you missing a using directive or an assembly reference?)
         [HttpPost]
-#pragma warning restore CS0246 // The type or namespace name 'HttpPostAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'HttpPost' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'Authorize' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'AuthorizeAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'Roles' could not be found (are you missing a using directive or an assembly reference?)
         [Authorize(Roles = ("Admin"))]
-#pragma warning restore CS0246 // The type or namespace name 'Roles' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'AuthorizeAttribute' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning restore CS0246 // The type or namespace name 'Authorize' could not be found (are you missing a using directive or an assembly reference?)
-#pragma warning disable CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         public async Task<ActionResult> OtelDenyDelete()
 #pragma warning restore CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         {
