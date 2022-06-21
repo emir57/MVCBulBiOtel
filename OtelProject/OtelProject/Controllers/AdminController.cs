@@ -407,7 +407,6 @@ namespace OtelProject.Controllers
         [HttpPost]
         [Authorize(Roles = ("Admin"))]
         public async Task<ActionResult> OtelDenyDelete()
-#pragma warning restore CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         {
             //Otel Permission 3 - OK    /   0 - Wait       / 1 - No
             List<OtelUser> otelUsers = await context.OtelUsers.Where(a => a.OtelStatus == 1).ToListAsync();
