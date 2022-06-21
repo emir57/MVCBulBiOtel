@@ -1,11 +1,19 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿#pragma warning disable CS0234 // The type or namespace name 'AspNetCore' does not exist in the namespace 'Microsoft' (are you missing an assembly reference?)
+using Microsoft.AspNetCore.Http;
+#pragma warning restore CS0234 // The type or namespace name 'AspNetCore' does not exist in the namespace 'Microsoft' (are you missing an assembly reference?)
+#pragma warning disable CS0234 // The type or namespace name 'AspNetCore' does not exist in the namespace 'Microsoft' (are you missing an assembly reference?)
 using Microsoft.AspNetCore.Http.Internal;
+#pragma warning restore CS0234 // The type or namespace name 'AspNetCore' does not exist in the namespace 'Microsoft' (are you missing an assembly reference?)
+#pragma warning disable CS0234 // The type or namespace name 'AspNetCore' does not exist in the namespace 'Microsoft' (are you missing an assembly reference?)
 using Microsoft.AspNetCore.Mvc;
+#pragma warning restore CS0234 // The type or namespace name 'AspNetCore' does not exist in the namespace 'Microsoft' (are you missing an assembly reference?)
 using OtelProject.Models.Context;
 using OtelProject.Models.Tables;
 using System;
 using System.Collections.Generic;
+#pragma warning disable CS0234 // The type or namespace name 'Entity' does not exist in the namespace 'System.Data' (are you missing an assembly reference?)
 using System.Data.Entity;
+#pragma warning restore CS0234 // The type or namespace name 'Entity' does not exist in the namespace 'System.Data' (are you missing an assembly reference?)
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -15,12 +23,20 @@ using System.Web.Mvc;
 
 namespace OtelProject.Controllers
 {
+#pragma warning disable CS0246 // The type or namespace name 'AllowAnonymous' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning disable CS0246 // The type or namespace name 'AllowAnonymousAttribute' could not be found (are you missing a using directive or an assembly reference?)
     [AllowAnonymous]
+#pragma warning restore CS0246 // The type or namespace name 'AllowAnonymousAttribute' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning restore CS0246 // The type or namespace name 'AllowAnonymous' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning disable CS0246 // The type or namespace name 'Controller' could not be found (are you missing a using directive or an assembly reference?)
     public class HomeController : Controller
+#pragma warning restore CS0246 // The type or namespace name 'Controller' could not be found (are you missing a using directive or an assembly reference?)
     {
         BulBiOtelContext context = new BulBiOtelContext();
         OtelCountry otelCountry = new OtelCountry();
+#pragma warning disable CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         public async Task<ActionResult> Index(string searchString, int pricemin=1, int pricemax=0, byte countries = 0)
+#pragma warning restore CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         {
             decimal pmin = Convert.ToDecimal(pricemin);
             decimal pmax = Convert.ToDecimal(pricemax);
@@ -86,19 +102,25 @@ namespace OtelProject.Controllers
         //    }
         //    return RedirectToAction("Index");
         //}
+#pragma warning disable CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         public ActionResult About()
+#pragma warning restore CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         {
             ViewBag.Message =" yılında hizmete giren ve size uygun otelleri kolaylıkla bulmanıza yardımcı olmak amaçlı kurulmuş bir Websitesidir.";
 
             return View();
         }
+#pragma warning disable CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         public ActionResult Contact()
+#pragma warning restore CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
+#pragma warning disable CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         public ActionResult Error()
+#pragma warning restore CS0246 // The type or namespace name 'ActionResult' could not be found (are you missing a using directive or an assembly reference?)
         {
             return View();
         }

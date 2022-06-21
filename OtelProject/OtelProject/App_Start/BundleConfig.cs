@@ -1,12 +1,16 @@
 ﻿using System.Web;
+#pragma warning disable CS0234 // The type or namespace name 'Optimization' does not exist in the namespace 'System.Web' (are you missing an assembly reference?)
 using System.Web.Optimization;
+#pragma warning restore CS0234 // The type or namespace name 'Optimization' does not exist in the namespace 'System.Web' (are you missing an assembly reference?)
 
 namespace OtelProject
 {
     public class BundleConfig
     {
         // Paketleme hakkında daha fazla bilgi için lütfen https://go.microsoft.com/fwlink/?LinkId=301862 adresini ziyaret edin
+#pragma warning disable CS0246 // The type or namespace name 'BundleCollection' could not be found (are you missing a using directive or an assembly reference?)
         public static void RegisterBundles(BundleCollection bundles)
+#pragma warning restore CS0246 // The type or namespace name 'BundleCollection' could not be found (are you missing a using directive or an assembly reference?)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
