@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OtelProject.Models.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace OtelProject.Models
 {
     public class OtelUserEditViewModel
     {
-
+        public List<Country> Countries { get; set; }
     }
 }
