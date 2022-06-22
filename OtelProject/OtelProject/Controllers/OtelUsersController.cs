@@ -109,16 +109,14 @@ namespace OtelProject.Controllers
             HttpCookie authcookie = HttpContext.Request.Cookies[cookiename];
             FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authcookie.Value);
             string name = ticket.Name;
+
             var entity = context.OtelUsers.SingleOrDefault(a => a.OtelUserName == name);
             //3 - OK    /   0 - Wait       / 1 - No
             if (entity.OtelStatus == 1)
-            {
                 ViewBag.check = "Hesabınız Onaylanmadı.";
-            }
             else if (entity.OtelStatus == 0)
-            {
                 ViewBag.check = "Hesabınız Onaylanmayı Bekliyor";
-            }
+
             return View();
         }
         [Authorize]
