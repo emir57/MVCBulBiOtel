@@ -1,4 +1,4 @@
-﻿@model List<OtelProject.Models.Tables.Country>
+﻿@model OtelProject.Models.OtelUserEditViewModel
 @*@model OtelProject.Models.Tables.Otel*@
 
 @{
@@ -11,51 +11,51 @@
 <hr />
 @using (Html.BeginForm("OtelUserEdit", "OtelUsers", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-<div class="input-group mb-3">
-    <span class="input-group-text" id="id">Otel Id</span>
-    @Html.TextBox("OtelsId", ViewData["OtelsId"], new { @class = "form-control text", disabled = "true" })
-</div>
-<div class="input-group mb-3">
-    <span class="input-group-text" id="name">Otel Adı</span>
-    @Html.TextBox("OtelName", ViewData["OtelName"], new { @class = "form-control text"})
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="id">Otel Id</span>
+        @Html.TextBox("OtelsId", ViewData["OtelsId"], new { @class = "form-control text", disabled = "true" })
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="name">Otel Adı</span>
+        @Html.TextBox("OtelName", ViewData["OtelName"], new { @class = "form-control text" })
 
 
-</div>
-<div class="input-group mb-3">
-    <span class="input-group-text" id="location">Otel Lokasyonu</span>
-    @Html.TextBox("OtelLocation", ViewData["OtelLocation"], new { @class = "form-control text" })
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="location">Otel Lokasyonu</span>
+        @Html.TextBox("OtelLocation", ViewData["OtelLocation"], new { @class = "form-control text" })
 
 
-</div>
-<div class="input-group mb-3">
-    <span class="input-group-text" id="price">Otel Fiyatı</span>
-    @Html.TextBox("OtelPrice", ViewData["OtelPrice"], new { @class = "form-control text" })
-
-
-
-</div>
-<div class="input-group mb-3">
-    <span class="input-group-text" id="description">Otel Açıklaması</span>
-    @Html.TextBox("OtelDescription", ViewData["OtelDescription"], new { @class = "form-control text" })
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="price">Otel Fiyatı</span>
+        @Html.TextBox("OtelPrice", ViewData["OtelPrice"], new { @class = "form-control text" })
 
 
 
-</div>
-<div class="input-group mb-3">
-    <span class="input-group-text" id="star">Otel Yıldızı</span>
-    @Html.TextBox("OtelStars", ViewData["OtelStars"], new { @class = "form-control text" })
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="description">Otel Açıklaması</span>
+        @Html.TextBox("OtelDescription", ViewData["OtelDescription"], new { @class = "form-control text" })
 
 
 
-</div>
-<div class="input-group mb-3">
-    <span class="input-group-text" id="rating">Otel Puanlaması</span>
-    @Html.TextBox("OtelRating", ViewData["OtelRating"], new { @class = "form-control text" })
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="star">Otel Yıldızı</span>
+        @Html.TextBox("OtelStars", ViewData["OtelStars"], new { @class = "form-control text" })
+
+
+
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="rating">Otel Puanlaması</span>
+        @Html.TextBox("OtelRating", ViewData["OtelRating"], new { @class = "form-control text" })
 
 
 
 
-</div>
+    </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="countries">Otel Şehri</span>
         <select id="countries" name="OtelCountry" class="form-select form-select-lg" aria-label="Default select example">
