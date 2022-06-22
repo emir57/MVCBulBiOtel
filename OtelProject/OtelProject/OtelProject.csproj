@@ -198,6 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Context\BulBiOtelContext.cs" />
+    <Compile Include="Models\OtelUserEditViewModel.cs" />
     <Compile Include="Models\Roles\DefaultRoleManager.cs" />
     <Compile Include="Models\Tables\Admin.cs" />
     <Compile Include="Models\Tables\Country.cs" />
