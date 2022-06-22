@@ -194,12 +194,12 @@ namespace OtelProject.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult> OtelUserEdit(Otel otel,string OtelsId, int? id, HttpPostedFileBase picture)
+        public async Task<ActionResult> OtelUserEdit(Otel otel, int? id, HttpPostedFileBase picture)
         {
             id = getId();
             var user = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == id);
             var getOtel = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == user.OtelId);
-            string totalName = "";
+            string databaseImageUrl = getOtel.OtelPicture;
             if (picture != null)
             {
                 //image jpg png?
@@ -211,13 +211,8 @@ namespace OtelProject.Controllers
                 //save - upload
                 picture.SaveAs(Path.Combine(filePath, fileName));
                 //total fileName (database)
-                totalName = "../wwwroot/otelPicture/" + fileName;
+                databaseImageUrl = "../wwwroot/otelPicture/" + fileName;
             }
-            else
-            {
-                totalName = getOtel.OtelPicture;
-            }
-
             getOtel.OtelName = otel.OtelName;
             getOtel.OtelLocation = otel.OtelLocation;
             getOtel.OtelPrice = otel.OtelPrice;
@@ -225,7 +220,7 @@ namespace OtelProject.Controllers
             getOtel.OtelStars = otel.OtelStars;
             getOtel.OtelRating = otel.OtelRating;
             getOtel.OtelCountry = otel.OtelCountry;
-            getOtel.OtelPicture = totalName;
+            getOtel.OtelPicture = databaseImageUrl;
             await context.SaveChangesAsync();
             return RedirectToAction("OtelUserEdit");
         }
