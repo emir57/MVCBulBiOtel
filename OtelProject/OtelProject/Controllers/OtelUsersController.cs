@@ -132,7 +132,7 @@ namespace OtelProject.Controllers
         public async Task<ActionResult> OtelUserPanel(string name, string location, decimal price, string description, byte stars, double rating, int countries, HttpPostedFileBase picture)
         {
             int id = getId();
-            var check = await context.Otels.SingleOrDefaultAsync(a => a.OtelName == name);
+            var check = await context.Otels.SingleOrDefaultAsync(a => a.OtelName.ToLower() == name.ToLower());
             if (check == null)
             {
                 string databaseImageUrl = "../wwwroot/otelPicture/default.jpg";
