@@ -76,13 +76,13 @@ namespace OtelProject.Controllers
             var check = context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserName == username);
             if (check != null)
             {
-                context.OtelUsers.Add(new OtelUser
-                {
-                    OtelUserName = username,
-                    OtelPassword = password,
-                    OtelName = otelName,
-                    OtelMail = mail
-                });
+                OtelUser otelUser = new FluentEntity<OtelUser>()
+                    .AddParameter(o => o.OtelUserName, username)
+                    .AddParameter(o => o.OtelPassword, password)
+                    .AddParameter(o => o.OtelName, otelName)
+                    .AddParameter(o => o.OtelMail, mail)
+                    .GetEntity();
+                context.OtelUsers.Add(otelUser);
                 await context.SaveChangesAsync();
                 return RedirectToAction("OtelLogin");
             }
