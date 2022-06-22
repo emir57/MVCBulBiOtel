@@ -94,10 +94,10 @@ namespace OtelProject.Controllers
             int currentUserId = getId();
             var entity = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == id);
             context.Entry(entity).State = EntityState.Deleted;
-            await context.SaveChangesAsync();
 
             var currentUser = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == currentUserId);
             currentUser.OtelId = 0;
+
             await context.SaveChangesAsync();
 
             return RedirectToAction("OtelUserPanel");
