@@ -133,21 +133,15 @@ namespace OtelProject.Controllers
             var check = await context.Otels.SingleOrDefaultAsync(a => a.OtelName == name);
             if (check == null)
             {
-                //picture save
-                string totalName;
+                string databaseImageUrl = "../wwwroot/otelPicture/default.jpg";
                 if (picture != null)
                 {
                     string extension = Path.GetExtension(picture.FileName);
                     string fileName = Guid.NewGuid() + extension;
                     string path = Server.MapPath("~/wwwroot/otelPicture/");
                     picture.SaveAs(Path.Combine(path, fileName));
-                    totalName = "../wwwroot/otelPicture/" + fileName;
+                    databaseImageUrl = "../wwwroot/otelPicture/" + fileName;
                 }
-                else
-                {
-                    totalName = "../wwwroot/otelPicture/default.jpg";
-                }
-                //add otel
                 var otel = new Otel
                 {
                     OtelName = name,
@@ -157,26 +151,21 @@ namespace OtelProject.Controllers
                     OtelStars = stars,
                     OtelRating = rating,
                     OtelCountry = countries,
-                    OtelPicture = totalName
+                    OtelPicture = databaseImageUrl
                 };
                 context.Otels.Add(otel);
                 await context.SaveChangesAsync();
-                //find id
-                var otelId = await context.Otels.SingleOrDefaultAsync(a => a.OtelName == name && a.OtelLocation == location && a.OtelPrice == price && a.OtelDescription == description);
-                //get current user
 
                 var currentUser = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == id);
+                currentUser.OtelId = otel.OtelsId;
 
-                currentUser.OtelId = otelId.OtelsId;
                 await context.SaveChangesAsync();
+
+                return RedirectToAction("OtelUserEdit");
             }
-            else
-            {
-                var list = await context.Countries.ToListAsync();
-                ViewBag.message = "Aynı ada sahip otel zaten var!";
-                return View(list);
-            }
-            return RedirectToAction("OtelUserEdit");
+            var countriesList = await context.Countries.ToListAsync();
+            ViewBag.message = "Aynı ada sahip otel zaten var!";
+            return View(countriesList);
         }
         [Authorize]
         public async Task<ActionResult> OtelUserEdit(int? id)
