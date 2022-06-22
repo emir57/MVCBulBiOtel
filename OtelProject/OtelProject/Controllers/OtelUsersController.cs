@@ -193,25 +193,22 @@ namespace OtelProject.Controllers
             string databaseImageUrl = getOtel.OtelPicture;
             if (picture != null)
             {
-                //image jpg png?
                 string imageExtention = Path.GetExtension(picture.FileName);
-                //identity special name
                 string fileName = Guid.NewGuid() + imageExtention;
-                //file save path
                 string filePath = Server.MapPath("~/wwwroot/otelPicture/");
-                //save - upload
                 picture.SaveAs(Path.Combine(filePath, fileName));
-                //total fileName (database)
                 databaseImageUrl = "../wwwroot/otelPicture/" + fileName;
             }
-            getOtel.OtelName = otel.OtelName;
-            getOtel.OtelLocation = otel.OtelLocation;
-            getOtel.OtelPrice = otel.OtelPrice;
-            getOtel.OtelDescription = otel.OtelDescription;
-            getOtel.OtelStars = otel.OtelStars;
-            getOtel.OtelRating = otel.OtelRating;
-            getOtel.OtelCountry = otel.OtelCountry;
-            getOtel.OtelPicture = databaseImageUrl;
+            getOtel = new FluentEntity<Otel>(getOtel)
+                .AddParameter(o => o.OtelName, otel.OtelName)
+                .AddParameter(o => o.OtelLocation, otel.OtelLocation)
+                .AddParameter(o => o.OtelPrice, otel.OtelPrice)
+                .AddParameter(o => o.OtelDescription, otel.OtelDescription)
+                .AddParameter(o => o.OtelStars, otel.OtelStars)
+                .AddParameter(o => o.OtelRating, otel.OtelRating)
+                .AddParameter(o => o.OtelCountry, otel.OtelCountry)
+                .AddParameter(o => o.OtelPicture, databaseImageUrl)
+                .GetEntity();
             await context.SaveChangesAsync();
             return RedirectToAction("OtelUserEdit");
         }
