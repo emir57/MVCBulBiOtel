@@ -52,21 +52,14 @@ namespace OtelProject.Controllers
                     {
                         if (entity.OtelId == 0)
                         {
-
                             return RedirectToAction("OtelUserPanel");
                         }
-                        else
-                        {
-                            return RedirectToAction("OtelUserEdit");
-                        }
+                        return RedirectToAction("OtelUserEdit");
                     }
-                    else
-                    {
-                        return RedirectToAction("PermissionCheck");
-                    }
+                    return RedirectToAction("PermissionCheck");
                 }
-                ViewBag.Message = "Kullanıcı adı veya parola yanlış.";
             }
+            ViewBag.Message = "Kullanıcı adı veya parola yanlış.";
             return View();
         }
         [AllowAnonymous]
