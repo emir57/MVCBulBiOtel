@@ -194,6 +194,11 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OtelUsersController.cs" />
+    <Compile Include="FEntity\FluentEntity.cs" />
+    <Compile Include="FEntity\FluentEntityBase.cs" />
+    <Compile Include="FEntity\FluentExceptions\ArgumentFluentEntityException.cs" />
+    <Compile Include="FEntity\FluentExceptions\FluentException.cs" />
+    <Compile Include="FEntity\FluentExceptions\PropertyNotFoundFluentEntityException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

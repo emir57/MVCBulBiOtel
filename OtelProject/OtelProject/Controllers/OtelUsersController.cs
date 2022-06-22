@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentEntity_ConsoleApp.FEntity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using OtelProject.Models;
@@ -143,17 +144,16 @@ namespace OtelProject.Controllers
                     picture.SaveAs(Path.Combine(path, fileName));
                     databaseImageUrl = "../wwwroot/otelPicture/" + fileName;
                 }
-                var otel = new Otel
-                {
-                    OtelName = name,
-                    OtelLocation = location,
-                    OtelPrice = price,
-                    OtelDescription = description,
-                    OtelStars = stars,
-                    OtelRating = rating,
-                    OtelCountry = countries,
-                    OtelPicture = databaseImageUrl
-                };
+                Otel otel = new FluentEntity<Otel>()
+                    .AddParameter(o => o.OtelName, name)
+                    .AddParameter(o => o.OtelLocation, location)
+                    .AddParameter(o => o.OtelPrice, price)
+                    .AddParameter(o => o.OtelDescription, description)
+                    .AddParameter(o => o.OtelStars, stars)
+                    .AddParameter(o => o.OtelRating, rating)
+                    .AddParameter(o => o.OtelCountry, countries)
+                    .AddParameter(o => o.OtelPicture, databaseImageUrl)
+                    .GetEntity();
                 context.Otels.Add(otel);
                 await context.SaveChangesAsync();
 
