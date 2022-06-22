@@ -10,5 +10,6 @@ namespace OtelProject.Models
     public class OtelUserEditViewModel
     {
         public List<Country> Countries { get; set; }
+        public Otel Otel { get; set; }
     }
 }
