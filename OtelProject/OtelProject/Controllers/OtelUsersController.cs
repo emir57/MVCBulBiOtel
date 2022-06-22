@@ -84,12 +84,8 @@ namespace OtelProject.Controllers
                 await context.SaveChangesAsync();
                 return RedirectToAction("OtelLogin");
             }
-            else
-            {
-                ViewBag.message = "Kullanıcı adı kullanılıyor.";
-                return View();
-            }
-
+            ViewBag.message = "Kullanıcı adı kullanılıyor.";
+            return View();
         }
 
         [Authorize]
