@@ -10,7 +10,6 @@
 @using (Html.BeginForm("OtelUserEdit", "OtelUsers", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="input-group mb-3">
-        @Model.Otel.OtelsId
         <span class="input-group-text" id="id">Otel Id</span>
         @Html.TextBoxFor(x => x.Otel.OtelsId, new { @class = "form-control", disabled = "true" })
     </div>
