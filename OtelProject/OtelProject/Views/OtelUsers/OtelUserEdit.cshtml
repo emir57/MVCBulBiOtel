@@ -13,41 +13,43 @@
 {
     <div class="input-group mb-3">
         <span class="input-group-text" id="id">Otel Id</span>
-        @Html.TextBox("OtelsId", Model.Otel.OtelsId, new { @class = "form-control text", disabled = "true" })
+        <input value="@Model.Otel.OtelsId" name="OtelsId" type="number" disabled class="form-control" />
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="name">Otel Adı</span>
-        @Html.TextBox("OtelName", Model.Otel.OtelName, new { @class = "form-control text" })
+        @Html.TextBoxFor(x => x.Otel.OtelName, new { @class = "form-control text" })
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="location">Otel Lokasyonu</span>
-        @Html.TextBox("OtelLocation", Model.Otel.OtelLocation, new { @class = "form-control text" })
+        @Html.TextBoxFor(x => x.Otel.OtelLocation, new { @class = "form-control text" })
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="price">Otel Fiyatı</span>
-        @Html.TextBox("OtelPrice", Model.Otel.OtelPrice, new { @class = "form-control text" })
+        @Html.TextBoxFor(x => x.Otel.OtelPrice, new { @class = "form-control text" })
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="description">Otel Açıklaması</span>
-        @Html.TextBox("OtelDescription", Model.Otel.OtelDescription, new { @class = "form-control text" })
+        @Html.TextBoxFor(x => x.Otel.OtelDescription, new { @class = "form-control text" })
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="star">Otel Yıldızı</span>
-        @Html.TextBox("OtelStars", Model.Otel.OtelStars, new { @class = "form-control text" })
+        @Html.TextBoxFor(x => x.Otel.OtelStars, new { @class = "form-control text" })
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="rating">Otel Puanlaması</span>
-        @Html.TextBox("OtelRating", Model.Otel.OtelRating, new { @class = "form-control text" })
+        @Html.TextBoxFor(x => x.Otel.OtelRating, new { @class = "form-control text" })
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="countries">Otel Şehri</span>
-        <select id="countries" asp-for="OtelCountry" class="form-select form-select-lg" aria-label="Default select example">
-            @*<option value="@ViewData["OtelCountry"]" selected>@ViewData["CountryName"]</option>*@
+        @Html.DropDownListFor(x => x.Otel.OtelCountry, Model.Countries.Select(c =>
+                                new SelectListItem { Value = c.CountryId.ToString(), Text = c.CountryName }), new { @class = "form-control" })
+        @*<select id="countries" name="OtelCountry" value="@Model.Otel.OtelCountry" class="form-select form-select-lg" aria-label="Default select example">
+            <option value="@ViewData["OtelCountry"]" selected>@ViewData["CountryName"]</option>
             @foreach (var country in Model.Countries)
             {
                 <option value="@country.CountryId">@country.CountryName</option>
             }
-        </select>
+            </select>*@
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="picture">Otel Resmi</span>
