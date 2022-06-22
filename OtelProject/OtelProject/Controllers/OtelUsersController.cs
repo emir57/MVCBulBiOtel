@@ -194,7 +194,7 @@ namespace OtelProject.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult> OtelUserEdit(int? id, HttpPostedFileBase picture, Otel otel)
+        public async Task<ActionResult> OtelUserEdit(Otel otel,string OtelsId, int? id, HttpPostedFileBase picture)
         {
             id = getId();
             var user = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == id);

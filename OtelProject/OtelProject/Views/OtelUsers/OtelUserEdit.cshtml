@@ -1,6 +1,4 @@
 ﻿@model OtelProject.Models.OtelUserEditViewModel
-@*@model OtelProject.Models.Tables.Otel*@
-
 @{
     ViewBag.Title = "Otelinizi Düzenleyin";
     Layout = "~/Views/Shared/_LayoutOtelUserPanel.cshtml";
@@ -12,8 +10,9 @@
 @using (Html.BeginForm("OtelUserEdit", "OtelUsers", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="input-group mb-3">
+        @Model.Otel.OtelsId
         <span class="input-group-text" id="id">Otel Id</span>
-        <input value="@Model.Otel.OtelsId" name="OtelsId" type="number" disabled class="form-control" />
+        @Html.TextBoxFor(x => x.Otel.OtelsId, new { @class = "form-control", disabled = "true" })
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="name">Otel Adı</span>
