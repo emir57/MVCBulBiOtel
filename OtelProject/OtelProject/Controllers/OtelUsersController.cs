@@ -175,15 +175,6 @@ namespace OtelProject.Controllers
             var result = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == id);
             var otel = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == result.OtelId);
             var country = await context.Countries.SingleOrDefaultAsync(a => a.CountryId == otel.OtelCountry);
-            ViewData["OtelsId"] = otel.OtelsId;
-            ViewData["OtelName"] = otel.OtelName;
-            ViewData["OtelLocation"] = otel.OtelLocation;
-            ViewData["OtelPrice"] = otel.OtelPrice;
-            ViewData["OtelDescription"] = otel.OtelDescription;
-            ViewData["OtelStars"] = otel.OtelStars;
-            ViewData["OtelRating"] = otel.OtelRating;
-            ViewData["OtelCountry"] = otel.OtelCountry;
-            ViewData["CountryName"] = country.CountryName;
             OtelUserEditViewModel model = new OtelUserEditViewModel()
             {
                 Countries = await context.Countries.ToListAsync(),
