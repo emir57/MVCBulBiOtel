@@ -26,13 +26,8 @@ namespace OtelProject.Controllers
             string name = ticket.Name;
             var entity = context.OtelUsers.SingleOrDefault(a => a.OtelUserName == name);
             if (entity != null)
-            {
                 return entity.OtelUserId;
-            }
-            else
-            {
-                return 0;
-            }
+            return 0;
         }
         BulBiOtelContext context = new BulBiOtelContext();
         [AllowAnonymous]
@@ -57,7 +52,7 @@ namespace OtelProject.Controllers
                     {
                         if (entity.OtelId == 0)
                         {
-                            
+
                             return RedirectToAction("OtelUserPanel");
                         }
                         else
@@ -81,7 +76,7 @@ namespace OtelProject.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> OtelRegister(string username,string password, string otelName, string mail)
+        public async Task<ActionResult> OtelRegister(string username, string password, string otelName, string mail)
         {
             var check = context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserName == username);
             if (check != null)
@@ -101,7 +96,7 @@ namespace OtelProject.Controllers
                 ViewBag.message = "Kullanıcı adı kullanılıyor.";
                 return View();
             }
-            
+
         }
 
         [Authorize]
@@ -112,7 +107,7 @@ namespace OtelProject.Controllers
             context.Entry(entity).State = EntityState.Deleted;
             await context.SaveChangesAsync();
 
-            var currentUser = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId==currentUserId);
+            var currentUser = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == currentUserId);
             currentUser.OtelId = 0;
             await context.SaveChangesAsync();
 
@@ -130,7 +125,8 @@ namespace OtelProject.Controllers
             if (entity.OtelStatus == 1)
             {
                 ViewBag.check = "Hesabınız Onaylanmadı.";
-            }else if(entity.OtelStatus == 0)
+            }
+            else if (entity.OtelStatus == 0)
             {
                 ViewBag.check = "Hesabınız Onaylanmayı Bekliyor";
             }
@@ -181,7 +177,7 @@ namespace OtelProject.Controllers
                 //find id
                 var otelId = await context.Otels.SingleOrDefaultAsync(a => a.OtelName == name && a.OtelLocation == location && a.OtelPrice == price && a.OtelDescription == description);
                 //get current user
-                
+
                 var currentUser = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == id);
 
                 currentUser.OtelId = otelId.OtelsId;
@@ -223,7 +219,7 @@ namespace OtelProject.Controllers
         {
             id = getId();
             var user = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == id);
-            var getOtel = await context.Otels.SingleOrDefaultAsync(a=> a.OtelsId == user.OtelId);
+            var getOtel = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == user.OtelId);
             string totalName = "";
             if (picture != null)
             {
