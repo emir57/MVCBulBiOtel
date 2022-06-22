@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
+using OtelProject.Models;
 using OtelProject.Models.Context;
 using OtelProject.Models.Tables;
 using System;
@@ -183,10 +184,12 @@ namespace OtelProject.Controllers
             ViewData["OtelRating"] = otel.OtelRating;
             ViewData["OtelCountry"] = otel.OtelCountry;
             ViewData["CountryName"] = country.CountryName;
-
-
-            var countries = await context.Countries.ToListAsync();
-            return View(countries);
+            OtelUserEditViewModel model = new OtelUserEditViewModel()
+            {
+                Countries = await context.Countries.ToListAsync(),
+                Otel = otel
+            };
+            return View(model);
         }
 
         [HttpPost]
