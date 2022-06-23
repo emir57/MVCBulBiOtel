@@ -140,10 +140,7 @@ namespace OtelProject.Controllers
             });
             await context.SaveChangesAsync();
 
-            DateTime now = DateTime.Now;
-            _processing = "Otel Kayıt Eklendi";
-            _description = name;
-            LogRecord(now, _processing, _description);
+            await LogRecord("Otel Kayıt Eklendi", name);
 
             return RedirectToAction("OtelAdd");
         }
