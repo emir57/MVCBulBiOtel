@@ -299,9 +299,7 @@ namespace OtelProject.Controllers
         {
             var list = await context.LogRecords.ToListAsync();
 
-            DateTime now = DateTime.Now;
-            _processing = "Log Kayıtları Listelendi";
-            LogRecord(now, _processing, _description);
+            await LogRecord("Log Kayıtları Listelendi", _description);
             return View(list);
         }
         //Otel users
