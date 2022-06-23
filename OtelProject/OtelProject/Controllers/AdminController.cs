@@ -278,10 +278,10 @@ namespace OtelProject.Controllers
             entity.CountryName = country.CountryName;
             await context.SaveChangesAsync();
 
-            DateTime now = DateTime.Now;
             _processing = "Şehir Düzenleme İşlemi Yapıldı.";
             _description = entity.CountryName;
-            LogRecord(now, _processing, _description);
+            await LogRecord(_processing, _description);
+
             return RedirectToAction("CountryList");
         }
         [Authorize(Roles = ("Admin"))]
