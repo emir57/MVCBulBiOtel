@@ -314,9 +314,8 @@ namespace OtelProject.Controllers
                 {
                     var list0 = await context.OtelUsers.Where(a => a.OtelStatus == 0).ToListAsync();
 
-                    DateTime now = DateTime.Now;
                     _processing = "Durumu Beklenen Otel Kullanıcıları Listelendi";
-                    LogRecord(now, _processing, _description);
+                    await LogRecord(_processing, _description);
 
                     return View(list0);
                 }
