@@ -331,9 +331,8 @@ namespace OtelProject.Controllers
                 }
                 else if (query == "Tüm Kayıtları Göster")
                 {
-                    DateTime now = DateTime.Now;
                     _processing = "Tüm Otel Kullanıcıları Listelendi";
-                    LogRecord(now, _processing, _description);
+                    await LogRecord(_processing, _description);
                 }
             }
             return View(list);
