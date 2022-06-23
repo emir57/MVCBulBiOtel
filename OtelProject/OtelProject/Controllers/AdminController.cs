@@ -68,9 +68,8 @@ namespace OtelProject.Controllers
                 if (entity.AdminPassword == password)
                 {
                     FormsAuthentication.SetAuthCookie(entity.AdminUserName, false);
-                    //Logs login
-                    DateTime now = DateTime.Now;
-                    LogRecord(now, _processing, _description);
+                    
+                    await LogRecord(_processing, _description);
                     return RedirectToAction("AdminPanel");
                 }
                 else
@@ -92,12 +91,11 @@ namespace OtelProject.Controllers
         {
             return View();
         }
-        public ActionResult AdminLogOut()
+        public async Task<ActionResult> AdminLogOut()
         {
             _processing = "Çıkış Yapıldı";
-            //Logs logout
-            DateTime now = DateTime.Now;
-            LogRecord(now, _processing, _description);
+
+            await LogRecord(_processing, _description);
             FormsAuthentication.SignOut();
             return RedirectToAction("AdminLogin");
         }
