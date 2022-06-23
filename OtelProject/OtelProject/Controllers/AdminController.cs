@@ -244,10 +244,9 @@ namespace OtelProject.Controllers
             });
             await context.SaveChangesAsync();
 
-            DateTime now = DateTime.Now;
             _processing = "Şehir Ekleme İşlemi Yapıldı";
             _description = countryName;
-            LogRecord(now, _processing, _description);
+            await LogRecord(_processing, _description);
 
             return RedirectToAction("CountryAdd");
         }
