@@ -363,9 +363,8 @@ namespace OtelProject.Controllers
             user.OtelStatus = 1;
             await context.SaveChangesAsync();
 
-            DateTime now = DateTime.Now;
             _processing = $"{user.OtelUserName} adlı otel kullanıcısının durmu Reddedildi.";
-            LogRecord(now, _processing, _description);
+            await LogRecord(_processing, _description);
 
             return RedirectToAction("OtelUsersList");
         }
