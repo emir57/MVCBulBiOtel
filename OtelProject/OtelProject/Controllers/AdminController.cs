@@ -68,7 +68,7 @@ namespace OtelProject.Controllers
                 if (entity.AdminPassword == password)
                 {
                     FormsAuthentication.SetAuthCookie(entity.AdminUserName, false);
-                    
+
                     await LogRecord(_processing, _description);
                     return RedirectToAction("AdminPanel");
                 }
@@ -289,9 +289,7 @@ namespace OtelProject.Controllers
         {
             var list = await context.Countries.ToListAsync();
 
-            DateTime now = DateTime.Now;
-            _processing = "Şehir Listeleme İşlemi Yapıldı";
-            LogRecord(now, _processing, _description);
+            await LogRecord("Şehir Listeleme İşlemi Yapıldı", _description);
             return View(list);
         }
 
