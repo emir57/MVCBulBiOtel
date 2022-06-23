@@ -1,4 +1,5 @@
-﻿using OtelProject.Models.Context;
+﻿using FluentEntity_ConsoleApp.FEntity;
+using OtelProject.Models.Context;
 using OtelProject.Models.Tables;
 using System;
 using System.Collections.Generic;
@@ -17,21 +18,23 @@ namespace OtelProject.Controllers
     {
         string _processing;
         string _description;
-        public void LogRecord(DateTime dateTime, string processing, string description)
+        public void LogRecord(string operationType, string description)
         {
+            DateTime today = DateTime.Now;
+
             //Current username
             string cookieName = FormsAuthentication.FormsCookieName;
             HttpCookie authCookie = HttpContext.Request.Cookies[cookieName];
             FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
             string userName = ticket.Name;
 
-            context.LogRecords.Add(new LogRecord
-            {
-                LogAdminUserName = userName,
-                ProcessingDateTime = dateTime,
-                OperationType = processing,
-                Description = description
-            });
+            LogRecord logRecord = new FluentEntity<LogRecord>()
+                .AddParameter(l => l.LogAdminUserName, userName)
+                .AddParameter(l => l.ProcessingDateTime, today)
+                .AddParameter(l => l.OperationType, operationType)
+                .AddParameter(l => l.Description, description)
+                .GetEntity();
+            context.LogRecords.Add(logRecord);
             context.SaveChangesAsync();
         }
 
