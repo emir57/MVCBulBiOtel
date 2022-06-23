@@ -220,10 +220,9 @@ namespace OtelProject.Controllers
             entity.OtelPicture = totalName;
             await context.SaveChangesAsync();
 
-            DateTime now = DateTime.Now;
             _processing = "Otel Düzenleme İşlemi Yapıldı";
             _description = otel.OtelName;
-            LogRecord(now, _processing, _description);
+            await LogRecord(_processing, _description);
 
             return RedirectToAction("OtelList");
         }
