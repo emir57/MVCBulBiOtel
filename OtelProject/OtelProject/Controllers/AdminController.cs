@@ -18,7 +18,7 @@ namespace OtelProject.Controllers
     {
         string _processing;
         string _description;
-        public void LogRecord(string operationType, string description)
+        public async Task LogRecord(string operationType, string description)
         {
             DateTime today = DateTime.Now;
 
@@ -35,7 +35,7 @@ namespace OtelProject.Controllers
                 .AddParameter(l => l.Description, description)
                 .GetEntity();
             context.LogRecords.Add(logRecord);
-            context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
         public string getRole()
