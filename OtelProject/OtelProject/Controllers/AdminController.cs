@@ -149,9 +149,7 @@ namespace OtelProject.Controllers
         {
             var list = await context.Otels.ToListAsync();
 
-            DateTime now = DateTime.Now;
-            _processing = "Otel Listeleme İşlemi Yapıldı";
-            LogRecord(now, _processing, _description);
+            await LogRecord("Otel Listeleme İşlemi Yapıldı", _description);
 
             return View(list);
         }
@@ -167,9 +165,7 @@ namespace OtelProject.Controllers
             context.Entry(entity).State = EntityState.Deleted;
             await context.SaveChangesAsync();
 
-            DateTime now = DateTime.Now;
-            _processing = "Otel Silme İşlemi Yapıldı.";
-            LogRecord(now, _processing, _description);
+            await LogRecord("Otel Silme İşlemi Yapıldı.", _description);
 
             return RedirectToAction("OtelList");
         }
