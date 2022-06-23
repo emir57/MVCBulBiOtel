@@ -349,9 +349,8 @@ namespace OtelProject.Controllers
             user.Permission = "User";
             await context.SaveChangesAsync();
 
-            DateTime now = DateTime.Now;
             _processing = $"{user.OtelUserName} adlı otel kullanıcısının durmu Onaylandı.";
-            LogRecord(now, _processing, _description);
+            await LogRecord(_processing, _description);
 
             return RedirectToAction("OtelUsersList");
         }
