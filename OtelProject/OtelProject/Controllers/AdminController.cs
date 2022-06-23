@@ -17,7 +17,6 @@ namespace OtelProject.Controllers
     {
         string _processing;
         string _description;
-        //Log Record
         public void LogRecord(DateTime dateTime, string processing, string description)
         {
             //Current username
@@ -90,7 +89,6 @@ namespace OtelProject.Controllers
         {
             return View();
         }
-
         public ActionResult AdminLogOut()
         {
             _processing = "Çıkış Yapıldı";
@@ -99,7 +97,6 @@ namespace OtelProject.Controllers
             LogRecord(now, _processing, _description);
             FormsAuthentication.SignOut();
             return RedirectToAction("AdminLogin");
-
         }
 
         //****************************Otels
@@ -117,15 +114,10 @@ namespace OtelProject.Controllers
             string totalName = "";
             if (picture != null)
             {
-                //image jpg png?
                 string imageExtention = Path.GetExtension(picture.FileName);
-                //identity special name
                 string fileName = Guid.NewGuid() + imageExtention;
-                //file save path
                 string filePath = Server.MapPath("~/wwwroot/otelPicture/");
-                //save - upload
                 picture.SaveAs(Path.Combine(filePath, fileName));
-                //total fileName (database)
                 totalName = "../wwwroot/otelPicture/" + fileName;
             }
             else
@@ -146,7 +138,7 @@ namespace OtelProject.Controllers
                 OtelPicture = totalName
             });
             await context.SaveChangesAsync();
-            //Log
+
             DateTime now = DateTime.Now;
             _processing = "Otel Kayıt Eklendi";
             _description = name;
@@ -159,7 +151,6 @@ namespace OtelProject.Controllers
         {
             var list = await context.Otels.ToListAsync();
 
-            //Log
             DateTime now = DateTime.Now;
             _processing = "Otel Listeleme İşlemi Yapıldı";
             LogRecord(now, _processing, _description);
@@ -177,7 +168,7 @@ namespace OtelProject.Controllers
             _description = entity.OtelName;
             context.Entry(entity).State = EntityState.Deleted;
             await context.SaveChangesAsync();
-            //Log
+
             DateTime now = DateTime.Now;
             _processing = "Otel Silme İşlemi Yapıldı.";
             LogRecord(now, _processing, _description);
@@ -214,15 +205,10 @@ namespace OtelProject.Controllers
             string totalName = "";
             if (picture != null)
             {
-                //image jpg png?
                 string imageExtention = Path.GetExtension(picture.FileName);
-                //identity special name
                 string fileName = Guid.NewGuid() + imageExtention;
-                //file save path
                 string filePath = Server.MapPath("~/wwwroot/otelPicture/");
-                //save - upload
                 picture.SaveAs(Path.Combine(filePath, fileName));
-                //total fileName (database)
                 totalName = "../wwwroot/otelPicture/" + fileName;
             }
             else
@@ -239,7 +225,7 @@ namespace OtelProject.Controllers
             entity.OtelCountry = otel.OtelCountry;
             entity.OtelPicture = totalName;
             await context.SaveChangesAsync();
-            //Log
+
             DateTime now = DateTime.Now;
             _processing = "Otel Düzenleme İşlemi Yapıldı";
             _description = otel.OtelName;
@@ -264,7 +250,7 @@ namespace OtelProject.Controllers
                 CountryName = countryName
             });
             await context.SaveChangesAsync();
-            //Log
+
             DateTime now = DateTime.Now;
             _processing = "Şehir Ekleme İşlemi Yapıldı";
             _description = countryName;
@@ -280,7 +266,7 @@ namespace OtelProject.Controllers
             _description = entity.CountryName;
             context.Entry(entity).State = EntityState.Deleted;
             await context.SaveChangesAsync();
-            //Log
+
             DateTime now = DateTime.Now;
             _processing = "Şehir Silme İşlemi Yapıldı";
             LogRecord(now, _processing, _description);
@@ -292,7 +278,6 @@ namespace OtelProject.Controllers
         {
             var result = await context.Countries.SingleOrDefaultAsync(a => a.CountryId == id);
             return View(result);
-
         }
         [Authorize(Roles = ("Admin"))]
         [HttpPost]
@@ -301,7 +286,7 @@ namespace OtelProject.Controllers
             var entity = await context.Countries.SingleOrDefaultAsync(a => a.CountryId == id);
             entity.CountryName = country.CountryName;
             await context.SaveChangesAsync();
-            //Log
+
             DateTime now = DateTime.Now;
             _processing = "Şehir Düzenleme İşlemi Yapıldı.";
             _description = entity.CountryName;
@@ -312,7 +297,7 @@ namespace OtelProject.Controllers
         public async Task<ActionResult> CountryList()
         {
             var list = await context.Countries.ToListAsync();
-            //Log
+
             DateTime now = DateTime.Now;
             _processing = "Şehir Listeleme İşlemi Yapıldı";
             LogRecord(now, _processing, _description);
@@ -324,7 +309,7 @@ namespace OtelProject.Controllers
         public async Task<ActionResult> LogRecords()
         {
             var list = await context.LogRecords.ToListAsync();
-            //Log
+
             DateTime now = DateTime.Now;
             _processing = "Log Kayıtları Listelendi";
             LogRecord(now, _processing, _description);
@@ -341,7 +326,7 @@ namespace OtelProject.Controllers
                 if (query == "Bekleyen Kayıtları Listele")
                 {
                     var list0 = await context.OtelUsers.Where(a => a.OtelStatus == 0).ToListAsync();
-                    //Log
+
                     DateTime now = DateTime.Now;
                     _processing = "Durumu Beklenen Otel Kullanıcıları Listelendi";
                     LogRecord(now, _processing, _description);
@@ -360,7 +345,6 @@ namespace OtelProject.Controllers
                 }
                 else if (query == "Tüm Kayıtları Göster")
                 {
-                    //Log
                     DateTime now = DateTime.Now;
                     _processing = "Tüm Otel Kullanıcıları Listelendi";
                     LogRecord(now, _processing, _description);
@@ -380,7 +364,6 @@ namespace OtelProject.Controllers
             user.Permission = "User";
             await context.SaveChangesAsync();
 
-            //Log
             DateTime now = DateTime.Now;
             _processing = $"{user.OtelUserName} adlı otel kullanıcısının durmu Onaylandı.";
             LogRecord(now, _processing, _description);
@@ -396,7 +379,6 @@ namespace OtelProject.Controllers
             user.OtelStatus = 1;
             await context.SaveChangesAsync();
 
-            //Log
             DateTime now = DateTime.Now;
             _processing = $"{user.OtelUserName} adlı otel kullanıcısının durmu Reddedildi.";
             LogRecord(now, _processing, _description);
@@ -416,7 +398,6 @@ namespace OtelProject.Controllers
             }
             await context.SaveChangesAsync();
 
-            //Log
             DateTime now = DateTime.Now;
             _processing = "Reddedilen tüm otel kulllanıcıları silindi.";
             LogRecord(now, _processing, _description);
