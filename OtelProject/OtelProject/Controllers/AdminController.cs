@@ -259,9 +259,8 @@ namespace OtelProject.Controllers
             context.Entry(entity).State = EntityState.Deleted;
             await context.SaveChangesAsync();
 
-            DateTime now = DateTime.Now;
             _processing = "Şehir Silme İşlemi Yapıldı";
-            LogRecord(now, _processing, _description);
+            await LogRecord(_processing, _description);
 
             return RedirectToAction("CountryList");
         }
