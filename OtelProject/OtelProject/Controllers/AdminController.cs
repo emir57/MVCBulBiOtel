@@ -381,9 +381,8 @@ namespace OtelProject.Controllers
             }
             await context.SaveChangesAsync();
 
-            DateTime now = DateTime.Now;
             _processing = "Reddedilen tüm otel kulllanıcıları silindi.";
-            LogRecord(now, _processing, _description);
+            await LogRecord(_processing, _description);
 
             return RedirectToAction("OtelUsersList");
         }
