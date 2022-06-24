@@ -230,10 +230,11 @@ namespace OtelProject.Controllers
         [HttpPost]
         public async Task<ActionResult> CountryAdd(string countryName)
         {
-            context.Countries.Add(new Country
+            Country country = new Country
             {
                 CountryName = countryName
-            });
+            };
+            context.Countries.Add(country);
             await context.SaveChangesAsync();
 
             _processing = "Şehir Ekleme İşlemi Yapıldı";
