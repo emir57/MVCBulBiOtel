@@ -102,7 +102,6 @@ namespace OtelProject.Controllers
             return RedirectToAction("AdminLogin");
         }
 
-        //****************************Otels
         [Authorize(Roles = ("Admin"))]
         public async Task<ActionResult> OtelAdd()
         {
@@ -114,20 +113,15 @@ namespace OtelProject.Controllers
         [HttpPost]
         public async Task<ActionResult> OtelAdd(string name, string location, decimal price, string description, byte stars, double rating, int countries, HttpPostedFileBase picture)
         {
-            string totalName = "";
+            string databaseImageUrl = "../wwwroot/otelPicture/default.jpg";
             if (picture != null)
             {
                 string imageExtention = Path.GetExtension(picture.FileName);
                 string fileName = Guid.NewGuid() + imageExtention;
                 string filePath = Server.MapPath("~/wwwroot/otelPicture/");
                 picture.SaveAs(Path.Combine(filePath, fileName));
-                totalName = "../wwwroot/otelPicture/" + fileName;
+                databaseImageUrl = "../wwwroot/otelPicture/" + fileName;
             }
-            else
-            {
-                totalName = "../wwwroot/otelPicture/default.jpg";
-            }
-
 
             context.Otels.Add(new Otel
             {
@@ -138,7 +132,7 @@ namespace OtelProject.Controllers
                 OtelStars = stars,
                 OtelRating = rating,
                 OtelCountry = countries,
-                OtelPicture = totalName
+                OtelPicture = databaseImageUrl
             });
             await context.SaveChangesAsync();
 
@@ -220,13 +214,13 @@ namespace OtelProject.Controllers
             return RedirectToAction("OtelList");
         }
 
-        //****************************Country
 
         [Authorize(Roles = ("Admin"))]
         public ActionResult CountryAdd()
         {
             return View();
         }
+
         [Authorize(Roles = ("Admin"))]
         [HttpPost]
         public async Task<ActionResult> CountryAdd(string countryName)
@@ -287,7 +281,6 @@ namespace OtelProject.Controllers
             return View(list);
         }
 
-        //*********************Log
         [Authorize(Roles = ("Admin"))]
         public async Task<ActionResult> LogRecords()
         {
