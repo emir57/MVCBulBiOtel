@@ -202,6 +202,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminOtelEditViewModel.cs" />
     <Compile Include="Models\Context\BulBiOtelContext.cs" />
     <Compile Include="Models\OtelUserEditViewModel.cs" />
     <Compile Include="Models\Roles\DefaultRoleManager.cs" />
