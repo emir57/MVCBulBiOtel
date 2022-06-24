@@ -301,21 +301,20 @@ namespace OtelProject.Controllers
         public async Task<ActionResult> OtelUsersList(string query)
         {
             var list = await context.OtelUsers.ToListAsync();
-            //3 - OK    /   0 - Wait       / 1 - No
             if (query == null)
                 return View(list);
             if (query == "Bekleyen Kayıtları Listele")
             {
-                list = await context.OtelUsers.Where(a => a.OtelStatus == 0).ToListAsync();
+                list = await context.OtelUsers.Where(a => a.OtelStatus == (int)OtelStatus.Wait).ToListAsync();
 
                 _processing = "Durumu Beklenen Otel Kullanıcıları Listelendi";
                 await LogRecord(_processing, _description);
             }
-            else if (query == "1")
-                list = await context.OtelUsers.Where(a => a.OtelStatus == 1).ToListAsync();
-            else if (query == "3")
-                list = await context.OtelUsers.Where(a => a.OtelStatus == 3).ToListAsync();
-            else if (query == "Tüm Kayıtları Göster")
+            if (query == ((int)OtelStatus.No).ToString())
+                list = await context.OtelUsers.Where(a => a.OtelStatus == (int)OtelStatus.No).ToListAsync();
+            if (query == ((int)OtelStatus.Ok).ToString())
+                list = await context.OtelUsers.Where(a => a.OtelStatus == (int)OtelStatus.Ok).ToListAsync();
+            if (query == "Tüm Kayıtları Göster")
                 await LogRecord("Tüm Otel Kullanıcıları Listelendi", _description);
             return View(list);
         }
