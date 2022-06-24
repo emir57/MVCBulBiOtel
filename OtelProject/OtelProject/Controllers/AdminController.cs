@@ -122,18 +122,16 @@ namespace OtelProject.Controllers
                 picture.SaveAs(Path.Combine(filePath, fileName));
                 databaseImageUrl = "../wwwroot/otelPicture/" + fileName;
             }
-
-            context.Otels.Add(new Otel
-            {
-                OtelName = name,
-                OtelLocation = location,
-                OtelPrice = price,
-                OtelDescription = description,
-                OtelStars = stars,
-                OtelRating = rating,
-                OtelCountry = countries,
-                OtelPicture = databaseImageUrl
-            });
+            Otel otel = new FluentEntity<Otel>()
+                .AddParameter(o => o.OtelName, name)
+                .AddParameter(o => o.OtelLocation, location)
+                .AddParameter(o => o.OtelPrice, price)
+                .AddParameter(o => o.OtelDescription, description)
+                .AddParameter(o => o.OtelStars, stars)
+                .AddParameter(o => o.OtelRating, rating)
+                .AddParameter(o => o.OtelCountry, countries)
+                .AddParameter(o => o.OtelPicture, databaseImageUrl)
+                .GetEntity();
             await context.SaveChangesAsync();
 
             await LogRecord("Otel Kayıt Eklendi", name);
