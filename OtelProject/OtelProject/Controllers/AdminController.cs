@@ -337,9 +337,8 @@ namespace OtelProject.Controllers
         [Authorize(Roles = ("Admin"))]
         public async Task<ActionResult> OtelDeny(int userid)
         {
-            //Otel Permission 3 - OK    /   0 - Wait       / 1 - No
             var user = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == userid);
-            user.OtelStatus = 1;
+            user.OtelStatus = (int)OtelStatus.No;
             await context.SaveChangesAsync();
 
             _processing = $"{user.OtelUserName} adlı otel kullanıcısının durmu Reddedildi.";
