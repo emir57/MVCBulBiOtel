@@ -1,4 +1,5 @@
 ﻿using FluentEntity_ConsoleApp.FEntity;
+using OtelProject.Models;
 using OtelProject.Models.Context;
 using OtelProject.Models.Tables;
 using System;
@@ -176,20 +177,13 @@ namespace OtelProject.Controllers
             {
                 return RedirectToAction(nameof(OtelList));
             }
-            var otel = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == id);
-            var country = await context.Countries.SingleOrDefaultAsync(a => a.CountryId == otel.OtelCountry);
-            ViewData["OtelsId"] = otel.OtelsId;
-            ViewData["OtelName"] = otel.OtelName;
-            ViewData["OtelLocation"] = otel.OtelLocation;
-            ViewData["OtelPrice"] = otel.OtelPrice;
-            ViewData["OtelDescription"] = otel.OtelDescription;
-            ViewData["OtelStars"] = otel.OtelStars;
-            ViewData["OtelRating"] = otel.OtelRating;
-            ViewData["OtelCountry"] = otel.OtelCountry;
-            ViewData["CountryName"] = country.CountryName;
 
-            var countries = await context.Countries.ToListAsync();
-            return View(countries);
+            AdminOtelEditViewModel model = new AdminOtelEditViewModel()
+            {
+                Otel = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == id),
+                Countries = await context.Countries.ToListAsync()
+            };
+            return View(model);
         }
         [Authorize(Roles = ("Admin"))]
         [HttpPost]
