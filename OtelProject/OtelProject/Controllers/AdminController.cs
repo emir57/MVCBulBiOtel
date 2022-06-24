@@ -1,4 +1,5 @@
 ﻿using FluentEntity_ConsoleApp.FEntity;
+using OtelProject.Enums;
 using OtelProject.Models;
 using OtelProject.Models.Context;
 using OtelProject.Models.Tables;
@@ -322,9 +323,8 @@ namespace OtelProject.Controllers
         [Authorize(Roles = ("Admin"))]
         public async Task<ActionResult> OtelAccept(int userid)
         {
-            //Otel Permission 3 - OK    /   0 - Wait       / 1 - No
             var user = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == userid);
-            user.OtelStatus = 3;
+            user.OtelStatus = (int)OtelStatus.Ok;
             user.Permission = "User";
             await context.SaveChangesAsync();
 
