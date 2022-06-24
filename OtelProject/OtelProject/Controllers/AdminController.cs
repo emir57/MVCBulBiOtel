@@ -206,14 +206,16 @@ namespace OtelProject.Controllers
                 databaseImageUrl = "../wwwroot/otelPicture/" + fileName;
             }
 
-            entity.OtelName = otel.OtelName;
-            entity.OtelLocation = otel.OtelLocation;
-            entity.OtelPrice = otel.OtelPrice;
-            entity.OtelDescription = otel.OtelDescription;
-            entity.OtelStars = otel.OtelStars;
-            entity.OtelRating = otel.OtelRating;
-            entity.OtelCountry = otel.OtelCountry;
-            entity.OtelPicture = totalName;
+            entity = new FluentEntity<Otel>(entity)
+                .AddParameter(e => e.OtelName, otel.OtelName)
+                .AddParameter(e => e.OtelLocation, otel.OtelLocation)
+                .AddParameter(e => e.OtelPrice, otel.OtelPrice)
+                .AddParameter(e => e.OtelDescription, otel.OtelDescription)
+                .AddParameter(e => e.OtelStars, otel.OtelStars)
+                .AddParameter(e => e.OtelRating, otel.OtelRating)
+                .AddParameter(e => e.OtelCountry, otel.OtelCountry)
+                .AddParameter(e => e.OtelPicture, databaseImageUrl)
+                .GetEntity();
             await context.SaveChangesAsync();
 
             _processing = "Otel Düzenleme İşlemi Yapıldı";
