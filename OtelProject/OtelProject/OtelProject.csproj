@@ -194,6 +194,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OtelUsersController.cs" />
+    <Compile Include="Enums\OtelEnums.cs" />
     <Compile Include="FEntity\FluentEntity.cs" />
     <Compile Include="FEntity\FluentEntityBase.cs" />
     <Compile Include="FEntity\FluentExceptions\ArgumentFluentEntityException.cs" />
