@@ -196,18 +196,14 @@ namespace OtelProject.Controllers
         public async Task<ActionResult> OtelEdit(int id, HttpPostedFileBase picture, Otel otel)
         {
             var entity = context.Otels.SingleOrDefault(a => a.OtelsId == id);
-            string totalName = "";
+            string databaseImageUrl = entity.OtelPicture;
             if (picture != null)
             {
                 string imageExtention = Path.GetExtension(picture.FileName);
                 string fileName = Guid.NewGuid() + imageExtention;
                 string filePath = Server.MapPath("~/wwwroot/otelPicture/");
                 picture.SaveAs(Path.Combine(filePath, fileName));
-                totalName = "../wwwroot/otelPicture/" + fileName;
-            }
-            else
-            {
-                totalName = entity.OtelPicture;
+                databaseImageUrl = "../wwwroot/otelPicture/" + fileName;
             }
 
             entity.OtelName = otel.OtelName;
