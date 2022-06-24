@@ -301,33 +301,21 @@ namespace OtelProject.Controllers
         {
             var list = await context.OtelUsers.ToListAsync();
             //3 - OK    /   0 - Wait       / 1 - No
-            if (query != null)
+            if (query == null)
+                return View(list);
+            if (query == "Bekleyen Kayıtları Listele")
             {
-                if (query == "Bekleyen Kayıtları Listele")
-                {
-                    var list0 = await context.OtelUsers.Where(a => a.OtelStatus == 0).ToListAsync();
+                list = await context.OtelUsers.Where(a => a.OtelStatus == 0).ToListAsync();
 
-                    _processing = "Durumu Beklenen Otel Kullanıcıları Listelendi";
-                    await LogRecord(_processing, _description);
-
-                    return View(list0);
-                }
-                else if (query == "1")
-                {
-                    var list1 = await context.OtelUsers.Where(a => a.OtelStatus == 1).ToListAsync();
-                    return View(list1);
-                }
-                else if (query == "3")
-                {
-                    var list3 = await context.OtelUsers.Where(a => a.OtelStatus == 3).ToListAsync();
-                    return View(list3);
-                }
-                else if (query == "Tüm Kayıtları Göster")
-                {
-                    _processing = "Tüm Otel Kullanıcıları Listelendi";
-                    await LogRecord(_processing, _description);
-                }
+                _processing = "Durumu Beklenen Otel Kullanıcıları Listelendi";
+                await LogRecord(_processing, _description);
             }
+            else if (query == "1")
+                list = await context.OtelUsers.Where(a => a.OtelStatus == 1).ToListAsync();
+            else if (query == "3")
+                list = await context.OtelUsers.Where(a => a.OtelStatus == 3).ToListAsync();
+            else if (query == "Tüm Kayıtları Göster")
+                await LogRecord("Tüm Otel Kullanıcıları Listelendi", _description);
             return View(list);
 
 
