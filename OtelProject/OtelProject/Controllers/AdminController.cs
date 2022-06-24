@@ -317,8 +317,6 @@ namespace OtelProject.Controllers
             else if (query == "Tüm Kayıtları Göster")
                 await LogRecord("Tüm Otel Kullanıcıları Listelendi", _description);
             return View(list);
-
-
         }
         [HttpPost]
         [Authorize(Roles = ("Admin"))]
