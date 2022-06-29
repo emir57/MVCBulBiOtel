@@ -51,7 +51,6 @@
     </div>
     <div class="row">
         <div class="col-md-3 filterCard">
-            <hr class="width-90" />
             @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @id = "form" }))
             {
                 <div class="alert alert-danger" role="alert">
@@ -59,8 +58,6 @@
                 </div>
                 <div class="countryDiv border">
                     <label class="form-label" for="countries">Şehir Seçiniz</label>
-                    <hr class="cizgi" />
-
                     <select id="countries" name="countries" class="form-select form-select-lg" aria-label="Default select example">
                         <option value="0" selected>...</option>
                         @foreach (var itemC in Model.Countries)
@@ -71,12 +68,10 @@
                 </div>
                 <div class="searchString border">
                     <label class="form-label" for="searchString">Otel Adı Arayınız</label>
-                    <hr class="cizgi" />
                     @Html.TextBox("searchString", "", new { @class = "form-control", @id = "searchString" })
                 </div>
                 <div class="priceRange border">
                     <label class="" for="">Fiyat Aralığı Giriniz</label><br />
-                    <hr class="cizgi" />
                     <div class="priceAlt">
                         <label class="" for="pricemin">Minimum Fiyat</label>
                         @Html.TextBox("pricemin", "", new { @class = "form-control", @Style = "width:80px;", @id = "pricemin" })
