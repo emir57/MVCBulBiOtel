@@ -74,19 +74,12 @@ namespace OtelProject.Controllers
                     await LogRecord(_processing, _description);
                     return RedirectToAction("AdminPanel");
                 }
-                else
-                {
-                    ViewBag.style = "display:block;";
-                    ViewBag.Message = "Hatalı Şifre veya Parola";
-                    return View();
-                }
-            }
-            else
-            {
+                ViewBag.style = "display:block;";
                 ViewBag.Message = "Hatalı Şifre veya Parola";
                 return View();
             }
-
+            ViewBag.Message = "Hatalı Şifre veya Parola";
+            return View();
         }
         [Authorize(Roles = ("Admin"))]
         public ActionResult AdminPanel()
