@@ -144,11 +144,8 @@
     color: #E6842D;
 }
 .middle{
-    width:40rem;
-    position:absolute;
     display:block;
     bottom:1rem;
-    margin:0 33%;
 }
 .middle-right {
     width: 20rem;
