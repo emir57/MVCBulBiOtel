@@ -82,7 +82,7 @@ namespace OtelProject.Controllers
                     .GetEntity();
                 context.OtelUsers.Add(otelUser);
                 await context.SaveChangesAsync();
-                return RedirectToAction("OtelLogin");
+                return RedirectToAction(nameof(OtelLogin));
             }
             ViewBag.message = "Kullanıcı adı kullanılıyor.";
             return View();
