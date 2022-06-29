@@ -81,7 +81,7 @@ namespace OtelProject.Controllers
             ViewBag.Message = "Hatalı Şifre veya Parola";
             return View();
         }
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public ActionResult AdminPanel()
         {
             return View();
@@ -92,17 +92,17 @@ namespace OtelProject.Controllers
 
             await LogRecord(_processing, _description);
             FormsAuthentication.SignOut();
-            return RedirectToAction("AdminLogin");
+            return RedirectToAction(nameof(AdminLogin));
         }
 
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelAdd()
         {
             var countries = await context.Countries.ToListAsync();
             return View(countries);
 
         }
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> OtelAdd(string name, string location, decimal price, string description, byte stars, double rating, int countries, HttpPostedFileBase picture)
         {
@@ -129,9 +129,9 @@ namespace OtelProject.Controllers
 
             await LogRecord("Otel Kayıt Eklendi", name);
 
-            return RedirectToAction("OtelAdd");
+            return RedirectToAction(nameof(OtelAdd));
         }
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelList()
         {
             var list = await context.Otels.ToListAsync();
@@ -140,7 +140,7 @@ namespace OtelProject.Controllers
 
             return View(list);
         }
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelDelete(int id)
         {
             var entity = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == id);
@@ -153,9 +153,9 @@ namespace OtelProject.Controllers
 
             await LogRecord("Otel Silme İşlemi Yapıldı.", _description);
 
-            return RedirectToAction("OtelList");
+            return RedirectToAction(nameof(OtelList));
         }
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelEdit(int? id)
         {
             if (id == null)
@@ -170,7 +170,7 @@ namespace OtelProject.Controllers
             };
             return View(model);
         }
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> OtelEdit(int id, HttpPostedFileBase picture, Otel otel)
         {
@@ -201,17 +201,17 @@ namespace OtelProject.Controllers
             _description = otel.OtelName;
             await LogRecord(_processing, _description);
 
-            return RedirectToAction("OtelList");
+            return RedirectToAction(nameof(OtelList));
         }
 
 
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public ActionResult CountryAdd()
         {
             return View();
         }
 
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> CountryAdd(string countryName)
         {
@@ -226,9 +226,9 @@ namespace OtelProject.Controllers
             _description = countryName;
             await LogRecord(_processing, _description);
 
-            return RedirectToAction("CountryAdd");
+            return RedirectToAction(nameof(CountryAdd));
         }
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> CountryDelete(int id)
         {
 
@@ -240,15 +240,15 @@ namespace OtelProject.Controllers
             _processing = "Şehir Silme İşlemi Yapıldı";
             await LogRecord(_processing, _description);
 
-            return RedirectToAction("CountryList");
+            return RedirectToAction(nameof(CountryList));
         }
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> CountryEdit(int? id)
         {
             var result = await context.Countries.SingleOrDefaultAsync(a => a.CountryId == id);
             return View(result);
         }
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> CountryEdit(int id, Country country)
         {
@@ -260,9 +260,9 @@ namespace OtelProject.Controllers
             _description = entity.CountryName;
             await LogRecord(_processing, _description);
 
-            return RedirectToAction("CountryList");
+            return RedirectToAction(nameof(CountryList));
         }
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> CountryList()
         {
             var list = await context.Countries.ToListAsync();
@@ -271,7 +271,7 @@ namespace OtelProject.Controllers
             return View(list);
         }
 
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> LogRecords()
         {
             var list = await context.LogRecords.ToListAsync();
@@ -280,7 +280,7 @@ namespace OtelProject.Controllers
             return View(list);
         }
         //Otel users
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelUsersList(string query)
         {
             var list = await context.OtelUsers.ToListAsync();
@@ -302,7 +302,7 @@ namespace OtelProject.Controllers
             return View(list);
         }
         [HttpPost]
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelAccept(int userid)
         {
             var user = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == userid);
@@ -310,27 +310,27 @@ namespace OtelProject.Controllers
             user.Permission = "User";
             await context.SaveChangesAsync();
 
-            _processing = $"{user.OtelUserName} adlı otel kullanıcısının durmu Onaylandı.";
+            _processing = $"{user.OtelUserName} adlı otel kullanıcısının durumu Onaylandı.";
             await LogRecord(_processing, _description);
 
-            return RedirectToAction("OtelUsersList");
+            return RedirectToAction(nameof(OtelUsersList));
         }
         [HttpPost]
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelDeny(int userid)
         {
             var user = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == userid);
             user.OtelStatus = (int)OtelStatus.No;
             await context.SaveChangesAsync();
 
-            _processing = $"{user.OtelUserName} adlı otel kullanıcısının durmu Reddedildi.";
+            _processing = $"{user.OtelUserName} adlı otel kullanıcısının durumu Reddedildi.";
             await LogRecord(_processing, _description);
 
-            return RedirectToAction("OtelUsersList");
+            return RedirectToAction(nameof(OtelUsersList));
         }
 
         [HttpPost]
-        [Authorize(Roles = ("Admin"))]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelDenyDelete()
         {
             List<OtelUser> otelUsers = await context.OtelUsers.Where(a => a.OtelStatus == (int)OtelStatus.No).ToListAsync();
@@ -343,7 +343,7 @@ namespace OtelProject.Controllers
             _processing = "Reddedilen tüm otel kulllanıcıları silindi.";
             await LogRecord(_processing, _description);
 
-            return RedirectToAction("OtelUsersList");
+            return RedirectToAction(nameof(OtelUsersList));
         }
 
     }
