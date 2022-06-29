@@ -109,11 +109,10 @@ namespace OtelProject.Controllers
             FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authcookie.Value);
             string name = ticket.Name;
 
-            var entity = context.OtelUsers.SingleOrDefault(a => a.OtelUserName == name);
-            //3 - OK    /   0 - Wait       / 1 - No
-            if (entity.OtelStatus == 1)
+            var otelUser = context.OtelUsers.SingleOrDefault(a => a.OtelUserName == name);
+            if (otelUser.OtelStatus == (int)OtelStatus.No)
                 ViewBag.check = "Hesabınız Onaylanmadı.";
-            else if (entity.OtelStatus == 0)
+            else if (otelUser.OtelStatus == (int)OtelStatus.Wait)
                 ViewBag.check = "Hesabınız Onaylanmayı Bekliyor";
 
             return View();
