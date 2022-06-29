@@ -18,6 +18,7 @@ namespace OtelProject.Controllers
 {
     public class AdminController : Controller
     {
+        string defaultDatabaseImageUrl = "../wwwroot/otelPicture/default.jpg";
         string _processing;
         string _description;
         public async Task LogRecord(string operationType, string description)
@@ -106,7 +107,7 @@ namespace OtelProject.Controllers
         [HttpPost]
         public async Task<ActionResult> OtelAdd(string name, string location, decimal price, string description, byte stars, double rating, int countries, HttpPostedFileBase picture)
         {
-            string databaseImageUrl = "../wwwroot/otelPicture/default.jpg";
+            string databaseImageUrl = defaultDatabaseImageUrl;
             if (picture != null)
             {
                 string imageExtention = Path.GetExtension(picture.FileName);
