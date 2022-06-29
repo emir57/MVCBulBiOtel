@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
+using OtelProject.Enums;
 using OtelProject.Models;
 using OtelProject.Models.Context;
 using OtelProject.Models.Tables;
@@ -47,12 +48,9 @@ namespace OtelProject.Controllers
                 if (password == entity.OtelPassword)
                 {
                     FormsAuthentication.SetAuthCookie(username, false);
-
-                    //Otel Permission 3 - OK    /   0 - Wait       / 1 - No
-                    //OtelId ? 0 create otel - 1 edit otel
-                    if (entity.OtelStatus == 3)
+                    if (entity.OtelStatus == (int)OtelStatus.Ok)
                     {
-                        if (entity.OtelId == 0)
+                        if (entity.OtelId == (int)OtelStatus.Wait)
                         {
                             return RedirectToAction("OtelUserPanel");
                         }
