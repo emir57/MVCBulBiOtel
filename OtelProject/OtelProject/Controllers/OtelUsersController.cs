@@ -206,13 +206,13 @@ namespace OtelProject.Controllers
                 .AddParameter(o => o.OtelPicture, databaseImageUrl)
                 .GetEntity();
             await context.SaveChangesAsync();
-            return RedirectToAction("OtelUserEdit");
+            return RedirectToAction(nameof(OtelUserEdit));
         }
         [Authorize]
         public ActionResult OtelLogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("OtelLogin");
+            return RedirectToAction(nameof(OtelLogin));
         }
     }
 }
