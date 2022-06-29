@@ -146,7 +146,6 @@ namespace OtelProject.Controllers
             var entity = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == id);
             var oteluser = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelId == id);
             oteluser.OtelId = 0;
-            await context.SaveChangesAsync();
 
             _description = entity.OtelName;
             context.Entry(entity).State = EntityState.Deleted;
