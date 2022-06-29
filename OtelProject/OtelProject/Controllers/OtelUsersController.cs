@@ -128,8 +128,8 @@ namespace OtelProject.Controllers
         public async Task<ActionResult> OtelUserPanel(string name, string location, decimal price, string description, byte stars, double rating, int countries, HttpPostedFileBase picture)
         {
             int id = getId();
-            var check = await context.Otels.SingleOrDefaultAsync(a => a.OtelName.ToLower() == name.ToLower());
-            if (check == null)
+            var otel = await context.Otels.SingleOrDefaultAsync(a => a.OtelName.ToLower() == name.ToLower());
+            if (otel == null)
             {
                 string databaseImageUrl = "../wwwroot/otelPicture/default.jpg";
                 if (picture != null)
@@ -140,7 +140,7 @@ namespace OtelProject.Controllers
                     picture.SaveAs(Path.Combine(path, fileName));
                     databaseImageUrl = "../wwwroot/otelPicture/" + fileName;
                 }
-                Otel otel = new FluentEntity<Otel>()
+                Otel newOtel = new FluentEntity<Otel>()
                     .AddParameter(o => o.OtelName, name)
                     .AddParameter(o => o.OtelLocation, location)
                     .AddParameter(o => o.OtelPrice, price)
@@ -150,7 +150,7 @@ namespace OtelProject.Controllers
                     .AddParameter(o => o.OtelCountry, countries)
                     .AddParameter(o => o.OtelPicture, databaseImageUrl)
                     .GetEntity();
-                context.Otels.Add(otel);
+                context.Otels.Add(newOtel);
                 await context.SaveChangesAsync();
 
                 var currentUser = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == id);
@@ -158,7 +158,7 @@ namespace OtelProject.Controllers
 
                 await context.SaveChangesAsync();
 
-                return RedirectToAction("OtelUserEdit");
+                return RedirectToAction(nameof(OtelUserEdit));
             }
             var countriesList = await context.Countries.ToListAsync();
             ViewBag.message = "Aynı ada sahip otel zaten var!";
