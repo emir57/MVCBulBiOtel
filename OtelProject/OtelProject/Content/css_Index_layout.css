@@ -149,10 +149,7 @@
 }
 .middle-right {
     width: 20rem;
-    position: absolute;
     display: block;
-    bottom: 1rem;
-    right:1rem;
 }
 .border {
     border-radius: 10px;
