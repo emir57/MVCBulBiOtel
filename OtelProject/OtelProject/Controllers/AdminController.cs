@@ -59,6 +59,7 @@ namespace OtelProject.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> AdminLogin(string username, string password)
@@ -82,11 +83,13 @@ namespace OtelProject.Controllers
             ViewBag.Message = "Hatalı Şifre veya Parola";
             return View();
         }
+
         [Authorize(Roles = "Admin")]
         public ActionResult AdminPanel()
         {
             return View();
         }
+
         public async Task<ActionResult> AdminLogOut()
         {
             _processing = "Çıkış Yapıldı";
@@ -103,6 +106,7 @@ namespace OtelProject.Controllers
             return View(countries);
 
         }
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> OtelAdd(string name, string location, decimal price, string description, byte stars, double rating, int countries, HttpPostedFileBase picture)
@@ -132,6 +136,7 @@ namespace OtelProject.Controllers
 
             return RedirectToAction(nameof(OtelAdd));
         }
+
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelList()
         {
@@ -141,6 +146,7 @@ namespace OtelProject.Controllers
 
             return View(list);
         }
+
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelDelete(int id)
         {
@@ -156,6 +162,7 @@ namespace OtelProject.Controllers
 
             return RedirectToAction(nameof(OtelList));
         }
+
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelEdit(int? id)
         {
@@ -171,6 +178,7 @@ namespace OtelProject.Controllers
             };
             return View(model);
         }
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> OtelEdit(int id, HttpPostedFileBase picture, Otel otel)
@@ -229,6 +237,7 @@ namespace OtelProject.Controllers
 
             return RedirectToAction(nameof(CountryAdd));
         }
+
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> CountryDelete(int id)
         {
@@ -243,12 +252,14 @@ namespace OtelProject.Controllers
 
             return RedirectToAction(nameof(CountryList));
         }
+
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> CountryEdit(int? id)
         {
             var result = await context.Countries.SingleOrDefaultAsync(a => a.CountryId == id);
             return View(result);
         }
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> CountryEdit(int id, Country country)
@@ -263,6 +274,7 @@ namespace OtelProject.Controllers
 
             return RedirectToAction(nameof(CountryList));
         }
+
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> CountryList()
         {
@@ -280,7 +292,7 @@ namespace OtelProject.Controllers
             await LogRecord("Log Kayıtları Listelendi", _description);
             return View(list);
         }
-        //Otel users
+
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> OtelUsersList(string query)
         {

@@ -7,7 +7,7 @@ namespace OtelProject.Models.Tables
 {
     public class OtelCountry
     {
-        public IEnumerable<Otel> o { get; set; }
-        public IEnumerable<Country> c { get; set; }
+        public IEnumerable<Otel> Otels { get; set; }
+        public IEnumerable<Country> Countries { get; set; }
     }
 }
