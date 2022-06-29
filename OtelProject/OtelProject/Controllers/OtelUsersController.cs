@@ -71,7 +71,7 @@ namespace OtelProject.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> OtelRegister(string username, string password, string otelName, string mail)
         {
-            var check = context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserName == username);
+            var check = context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserName.ToLower() == username.ToLower());
             if (check != null)
             {
                 OtelUser otelUser = new FluentEntity<OtelUser>()
