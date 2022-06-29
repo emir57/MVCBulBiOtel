@@ -42,21 +42,21 @@ namespace OtelProject.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> OtelLogin(string username, string password)
         {
-            var entity = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserName == username);
-            if (entity != null)
+            var otelUser = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserName == username);
+            if (otelUser != null)
             {
-                if (password == entity.OtelPassword)
+                if (password == otelUser.OtelPassword)
                 {
                     FormsAuthentication.SetAuthCookie(username, false);
-                    if (entity.OtelStatus == (int)OtelStatus.Ok)
+                    if (otelUser.OtelStatus == (int)OtelStatus.Ok)
                     {
-                        if (entity.OtelId == (int)OtelStatus.Wait)
+                        if (otelUser.OtelId == (int)OtelStatus.Wait)
                         {
-                            return RedirectToAction("OtelUserPanel");
+                            return RedirectToAction(nameof(OtelUserPanel));
                         }
-                        return RedirectToAction("OtelUserEdit");
+                        return RedirectToAction(nameof(OtelUserEdit));
                     }
-                    return RedirectToAction("PermissionCheck");
+                    return RedirectToAction(nameof(PermissionCheck));
                 }
             }
             ViewBag.Message = "Kullanıcı adı veya parola yanlış.";
