@@ -92,15 +92,14 @@ namespace OtelProject.Controllers
         public async Task<ActionResult> OtelDelete(int id)
         {
             int currentUserId = getId();
-            var entity = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == id);
-            context.Entry(entity).State = EntityState.Deleted;
+            var otel = await context.Otels.SingleOrDefaultAsync(a => a.OtelsId == id);
+            context.Entry(otel).State = EntityState.Deleted;
 
             var currentUser = await context.OtelUsers.SingleOrDefaultAsync(a => a.OtelUserId == currentUserId);
             currentUser.OtelId = 0;
-
             await context.SaveChangesAsync();
 
-            return RedirectToAction("OtelUserPanel");
+            return RedirectToAction(nameof(OtelUserPanel));
         }
         [AllowAnonymous]
         public ActionResult PermissionCheck()
