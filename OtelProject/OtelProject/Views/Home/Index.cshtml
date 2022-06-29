@@ -46,11 +46,11 @@
 <span id="upper"></span>
 
 <div class="mainContainer">
+    <div class="searchTitle">
+        <h3 class="display-3">Hemen size uygun oteli aramaya başlayın.</h3> <h4>Toplamda <span class="count">@ViewBag.count</span> Otel</h4>
+    </div>
     <div class="row">
         <div class="col-md-3 filterCard">
-            <div class="searchTitle">
-                <h3 class="display-3">Hemen size uygun oteli aramaya başlayın.</h3> <h4>Toplamda <span class="count">@ViewBag.count</span> Otel</h4>
-            </div>
             <hr class="width-90" />
             @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @id = "form" }))
             {
