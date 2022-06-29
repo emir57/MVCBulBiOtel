@@ -62,7 +62,7 @@
 
                 <select id="countries" name="countries" class="form-select form-select-lg" aria-label="Default select example">
                     <option value="0" selected>...</option>
-                    @foreach (var itemC in Model.c)
+                    @foreach (var itemC in Model.Countries)
                     {
                         <option value="@itemC.CountryId">@itemC.CountryName</option>
                     }
@@ -96,7 +96,7 @@
         @Html.ActionLink("Tüm Otelleri Göster","Index",new { },new { @class= "middle-right btn btn-warning" })
     </div>
     <div class="otelsCard">
-        @foreach (var item in Model.o)
+        @foreach (var item in Model.Otels)
         {
             <div class="card">
                 <div class="card-image">
