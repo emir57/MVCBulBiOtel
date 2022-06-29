@@ -59,7 +59,7 @@
                 <div class="countryDiv border">
                     <label class="form-label" for="countries">Şehir Seçiniz</label>
                     <select id="countries" name="countries" class="form-select form-select-lg" aria-label="Default select example">
-                        <option value="0" selected>...</option>
+                        <option value="0" selected>Şehir Seçiniz</option>
                         @foreach (var itemC in Model.Countries)
                         {
                             <option value="@itemC.CountryId">@itemC.CountryName</option>
@@ -107,32 +107,26 @@
                                     if (item.OtelStars == 5)
                                     {
                                         <span class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-
                                     }
                                     else if (item.OtelStars == 4)
                                     {
                                         <span class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
-
                                     }
                                     else if (item.OtelStars == 3)
                                     {
                                         <span class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-
                                     }
                                     else if (item.OtelStars == 2)
                                     {
                                         <span class="otelStars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-
                                     }
                                     else if (item.OtelStars == 1)
                                     {
                                         <span class="otelStars"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-
                                     }
                                     else
                                     {
                                         <span class="otelStars"><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-
                                     }
                                 }
                             </div>
