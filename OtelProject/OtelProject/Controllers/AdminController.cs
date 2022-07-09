@@ -1,4 +1,4 @@
-﻿using FluentEntity_ConsoleApp.FEntity;
+﻿using FEntity;
 using OtelProject.Enums;
 using OtelProject.Models;
 using OtelProject.Models.Context;
@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
