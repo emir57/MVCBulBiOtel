@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
 
-namespace FluentEntity_ConsoleApp.FEntity.FluentExceptions
+namespace FEntity.Exceptions
 {
     public class FluentException : Exception
     {

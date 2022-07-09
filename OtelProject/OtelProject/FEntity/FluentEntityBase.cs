@@ -1,11 +1,9 @@
 ﻿using FluentEntity_ConsoleApp.FEntity.FluentExceptions;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 
-namespace FluentEntity_ConsoleApp.FEntity
+namespace FEntity
 {
     public abstract class FluentEntityBase<T>
         where T : class, new()
