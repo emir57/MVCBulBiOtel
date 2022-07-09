@@ -1,9 +1,5 @@
 ﻿using OtelProject.Models.Tables;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 namespace OtelProject.Models.Context
 {
@@ -14,5 +10,10 @@ namespace OtelProject.Models.Context
         public DbSet<Admin> Admins { get; set; }
         public DbSet<LogRecord> LogRecords { get; set; }
         public DbSet<OtelUser> OtelUsers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
